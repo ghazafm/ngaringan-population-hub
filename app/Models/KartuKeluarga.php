@@ -15,6 +15,8 @@ class KartuKeluarga extends Model
 
     public $incrementing = true;
 
+    public $timestamps = true;
+
     protected $fillable = ['id_kk'];
 
     // Define relationships if needed

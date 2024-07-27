@@ -15,6 +15,8 @@ class Rumah extends Model
 
     public $incrementing = true;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'rt', 'rw', 'dasawisma', 'desa', 'dusun', 'kecamatan',
         'makanan_pokok', 'jamban', 'sumber_air', 'pembuangan_sampah',

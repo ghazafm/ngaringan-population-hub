@@ -11,10 +11,18 @@ class Kematian extends Model
 
     protected $table = 'kematian';
 
-    protected $fillable = ['status', 'nama', 'kelamin', 'tanggal', 'sebab', 'keterangan', 'id_kehamilan'];
+    protected $primaryKey = 'id';
+
+    public $incrementing = true;
+
+    protected $fillable = [
+        'status', 'nama', 'kelamin', 'tanggal', 'sebab', 'keterangan', 'id_kehamilan'
+    ];
+
+    public $timestamps = true;
 
     public function kehamilan()
     {
-        return $this->belongsTo(Kehamilan::class, 'id_kehamilan', 'id_kehamilan');
+        return $this->belongsTo(Kehamilan::class, 'id_kehamilan');
     }
 }

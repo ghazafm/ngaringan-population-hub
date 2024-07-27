@@ -15,6 +15,8 @@ class Kehamilan extends Model
 
     public $incrementing = true;
 
+    public $timestamps = true;
+
     protected $fillable = ['status', 'nama_suami', 'id_ibu'];
 
     public function ibu()

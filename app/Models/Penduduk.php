@@ -15,6 +15,8 @@ class Penduduk extends Model
 
     public $incrementing = true;
 
+    public $timestamps = true;
+
     protected $fillable = [
         'status_perkawinan',
         'kelamin',

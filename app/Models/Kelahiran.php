@@ -11,10 +11,18 @@ class Kelahiran extends Model
 
     protected $table = 'kelahiran';
 
-    protected $fillable = ['nama_bayi', 'tanggal_lahir', 'akta_kelahiran', 'kelamin', 'id_kehamilan'];
+    protected $primaryKey = 'id';
+
+    public $incrementing = true;
+
+    protected $fillable = [
+        'nama_bayi', 'tanggal_lahir', 'akta_kelahiran', 'kelamin', 'id_kehamilan'
+    ];
+
+    public $timestamps = true;
 
     public function kehamilan()
     {
-        return $this->belongsTo(Kehamilan::class, 'id_kehamilan', 'id_kehamilan');
+        return $this->belongsTo(Kehamilan::class, 'id_kehamilan');
     }
 }
