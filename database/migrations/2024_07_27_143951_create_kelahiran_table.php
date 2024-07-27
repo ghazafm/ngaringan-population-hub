@@ -12,12 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kelahiran', function (Blueprint $table) {
-            $table->increments('id');
             $table->string('nama_bayi', 100);
             $table->date('tanggal_lahir');
             $table->boolean('akta_kelahiran');
             $table->enum('kelamin', ['Laki-laki', 'Perempuan'])->notNull();
-            $table->unsignedInteger('id_kehamilan')->nullable();
+            $table->unsignedBigInteger('id_kehamilan')->nullable();
             $table->timestamps();
 
             $table->foreign('id_kehamilan')->references('id_kehamilan')->on('kehamilan')->onDelete('set null');

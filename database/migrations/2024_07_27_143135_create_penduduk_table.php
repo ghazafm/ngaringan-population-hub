@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('penduduk', function (Blueprint $table) {
-            $table->increments('no_reg');
+            $table->id('no_reg');
             $table->enum('status_perkawinan', ['Tidak Kawin', 'Kawin'])->default('Tidak Kawin');
             $table->enum('kelamin', ['Laki-laki', 'Perempuan']);
             $table->string('nama', 100);
@@ -21,8 +21,8 @@ return new class extends Migration
             $table->enum('status_dalam_keluarga', ['Suami', 'Istri', 'Anak', 'Menantu Keluarga', 'Lainnya']);
             $table->string('pekerjaan', 100)->nullable();
             $table->enum('keterangan', ['Menetap', 'Pindah', 'Meninggal']);
-            $table->unsignedInteger('id_kk');
-            $table->unsignedInteger('id_rumah');
+            $table->unsignedBigInteger('id_kk');
+            $table->unsignedBigInteger('id_rumah');
             $table->timestamps();
 
             $table->foreign('id_kk')->references('id_kk')->on('kartu_keluarga')->onDelete('cascade');
