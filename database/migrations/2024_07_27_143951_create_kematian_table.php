@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kematian', function (Blueprint $table) {
-            $table->enum('status', ['Ibu', 'Anak'])->nullable();
+            $table->unsignedBigInteger('id_kehamilan');
+            $table->enum('status', ['Ibu', 'Anak']);
             $table->string('nama', 100);
-            $table->enum('kelamin', ['Laki-laki', 'Perempuan'])->notNull();
+            $table->enum('kelamin', ['Laki-laki', 'Perempuan']);
             $table->date('tanggal');
             $table->string('sebab', 255)->nullable();
-            $table->string('keterangan', 255);
-            $table->unsignedBigInteger('id_kehamilan')->nullable();
+            $table->string('keterangan', 255)->nullable();
             $table->timestamps();
 
             $table->foreign('id_kehamilan')->references('id_kehamilan')->on('kehamilan')->onDelete('set null');

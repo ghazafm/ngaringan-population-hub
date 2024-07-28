@@ -19,15 +19,15 @@ return new class extends Migration
             $table->string('desa', 100);
             $table->string('dusun', 100);
             $table->string('kecamatan', 100);
-            $table->enum('makanan_pokok', ['Beras', 'Non Beras']);
-            $table->boolean('jamban');
-            $table->enum('sumber_air', ['PDAM', 'Sumur', 'Sungai', 'Lainnya']);
-            $table->boolean('pembuangan_sampah');
-            $table->boolean('saluran_air_limbah');
-            $table->boolean('stiker_p4k');
-            $table->enum('kriteria_rumah', ['Sehat', 'Kurang Sehat']);
-            $table->boolean('aktifitas_up2k');
-            $table->boolean('kegiatan_lingkungan');
+            $table->enum('makanan_pokok', ['Beras', 'Non Beras'])->nullable();
+            $table->boolean('jamban')->nullable();
+            $table->enum('sumber_air', ['PDAM', 'Sumur', 'Sungai', 'Lainnya'])->nullable();
+            $table->boolean('pembuangan_sampah')->nullable();
+            $table->boolean('saluran_air_limbah')->nullable();
+            $table->boolean('stiker_p4k')->nullable();
+            $table->enum('kriteria_rumah', ['Sehat', 'Kurang Sehat'])->nullable();
+            $table->boolean('aktifitas_up2k')->nullable();
+            $table->boolean('kegiatan_lingkungan')->nullable();
             $table->timestamps();
         });
     }

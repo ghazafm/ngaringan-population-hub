@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('kartu_keluarga', function (Blueprint $table) {
             $table->id('id_kk');
+            $table->string('no');
             $table->timestamps();
         });
     }

@@ -13,15 +13,16 @@ return new class extends Migration
     {
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id('no_reg');
-            $table->enum('status_perkawinan', ['Tidak Kawin', 'Kawin'])->default('Tidak Kawin');
-            $table->enum('kelamin', ['Laki-laki', 'Perempuan']);
+            $table->string('no_kk');
             $table->string('nama', 100);
+            $table->enum('status_perkawinan', ['Tidak Kawin', 'Kawin'])->nullable();
+            $table->enum('kelamin', ['Laki-laki', 'Perempuan'])->nullable();
             $table->enum('pendidikan', ['Tidak Sekolah', 'SD', 'SMP', 'SMA', 'D1', 'D2', 'D3', 'S1', 'S2', 'S3', 'Lainnya'])->nullable();
-            $table->date('tanggal_lahir');
-            $table->enum('status_dalam_keluarga', ['Suami', 'Istri', 'Anak', 'Menantu Keluarga', 'Lainnya']);
+            $table->date('tanggal_lahir')->nullable();
+            $table->enum('status_dalam_keluarga', ['Suami', 'Istri', 'Anak', 'Menantu Keluarga', 'Lainnya'])->nullable();
             $table->string('pekerjaan', 100)->nullable();
-            $table->enum('keterangan', ['Menetap', 'Pindah', 'Meninggal']);
-            $table->unsignedBigInteger('id_kk');
+            $table->boolean('PBI')->default(false);
+            $table->enum('keterangan', ['Penduduk', 'Pindah', 'Meninggal']);
             $table->unsignedBigInteger('id_rumah');
             $table->timestamps();
 
