@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->enum('usertype', ['user', 'admin', 'gondoreso', 'purwosari', 'bintang', 'ngaringan'])->default('user');
-            $table->string('email')->unique();
+            $table->string('no_telp');
+            $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
