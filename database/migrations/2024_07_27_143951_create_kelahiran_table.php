@@ -19,7 +19,7 @@ return new class extends Migration
             $table->enum('kelamin', ['Laki-laki', 'Perempuan']);
             $table->timestamps();
 
-            $table->foreign('id_kehamilan')->references('id_kehamilan')->on('kehamilan')->onDelete('set null');
+            $table->foreign('id_kehamilan')->references('id_kehamilan')->on('kehamilan');
         });
     }
 

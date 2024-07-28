@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('keterangan', 255)->nullable();
             $table->timestamps();
 
-            $table->foreign('id_kehamilan')->references('id_kehamilan')->on('kehamilan')->onDelete('set null');
+            $table->foreign('id_kehamilan')->references('id_kehamilan')->on('kehamilan');
         });
     }
 
