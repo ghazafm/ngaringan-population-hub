@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->enum('status_dalam_keluarga', ['Suami', 'Istri', 'Anak', 'Menantu Keluarga', 'Lainnya'])->nullable();
             $table->string('pekerjaan', 100)->nullable();
-            $table->boolean('PBI')->default(false);
+            $table->boolean('pbi')->default(false);
             $table->enum('keterangan', ['Penduduk', 'Pindah', 'Meninggal']);
             $table->unsignedBigInteger('id_rumah');
             $table->timestamps();

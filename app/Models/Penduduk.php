@@ -26,15 +26,11 @@ class Penduduk extends Model
         'status_dalam_keluarga',
         'pekerjaan',
         'keterangan',
-        'id_kk',
+        'pbi',
+        'no_kk',
         'id_rumah'
     ];
-
-    public function kartuKeluarga()
-    {
-        return $this->belongsTo(KartuKeluarga::class, 'id_kk');
-    }
-
+    
     public function rumah()
     {
         return $this->belongsTo(Rumah::class, 'id_rumah');
