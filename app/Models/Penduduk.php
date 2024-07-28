@@ -11,13 +11,14 @@ class Penduduk extends Model
 
     protected $table = 'penduduk';
 
-    protected $primaryKey = 'no_reg';
+    protected $primaryKey = 'id';
 
     public $incrementing = true;
 
     public $timestamps = true;
 
     protected $fillable = [
+        'no_reg',
         'status_perkawinan',
         'kelamin',
         'nama',
@@ -30,7 +31,7 @@ class Penduduk extends Model
         'no_kk',
         'id_rumah'
     ];
-    
+
     public function rumah()
     {
         return $this->belongsTo(Rumah::class, 'id_rumah');

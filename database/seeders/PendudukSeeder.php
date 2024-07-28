@@ -26,10 +26,11 @@ class PendudukSeeder extends Seeder
                 'tanggal_lahir' => $faker->date('Y-m-d', '2000-12-31'),
                 'status_dalam_keluarga' => $faker->randomElement(['Suami', 'Istri', 'Anak', 'Menantu Keluarga', 'Lainnya']),
                 'pekerjaan' => $faker->jobTitle,
-                'keterangan' => $faker->randomElement(['Menetap', 'Pindah', 'Meninggal']),
-                'no_reg' => $i + 1,
-                'id_kk' => rand(1, 800), // Assuming there are 20 kartu_keluarga entries
-                'id_rumah' => rand(1, 250), // Assuming there are 20 rumah entries
+                'keterangan' => $faker->randomElement(['Penduduk', 'Pindah', 'Meninggal']),
+                'no_reg' => $faker->numerify('####'),
+                'pbi' => $faker->randomElement([true,false]),
+                'no_kk' => $faker->numerify('################'), 
+                'id_rumah' => rand(1, 250),
             ]);
         }
     }

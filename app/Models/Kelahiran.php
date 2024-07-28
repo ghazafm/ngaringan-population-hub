@@ -11,7 +11,7 @@ class Kelahiran extends Model
 
     protected $table = 'kelahiran';
 
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_kehamilan';
 
     public $incrementing = true;
 
