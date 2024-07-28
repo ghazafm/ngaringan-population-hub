@@ -26,7 +26,6 @@ return new class extends Migration
             $table->unsignedBigInteger('id_rumah');
             $table->timestamps();
 
-            $table->foreign('id_kk')->references('id_kk')->on('kartu_keluarga')->onDelete('cascade');
             $table->foreign('id_rumah')->references('id_rumah')->on('rumah')->onDelete('cascade');
         });
     }
