@@ -4,6 +4,7 @@ namespace App\Filament\Dasawisma\Resources;
 
 use App\Filament\Dasawisma\Resources\RumahResource\Pages;
 use App\Filament\Dasawisma\Resources\RumahResource\RelationManagers;
+use App\Filament\Dasawisma\Resources\RumahResource\RelationManagers\PendudukRelationManager;
 use App\Models\Rumah;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -205,7 +206,7 @@ class RumahResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            PendudukRelationManager::class
         ];
     }
 
