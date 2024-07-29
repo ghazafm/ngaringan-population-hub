@@ -21,7 +21,7 @@ class Kehamilan extends Model
 
     public function ibu()
     {
-        return $this->belongsTo(Penduduk::class, 'id_ibu', 'no_reg');
+        return $this->belongsTo(Penduduk::class, 'id_ibu', 'id');
     }
 
     public function kelahiran()
