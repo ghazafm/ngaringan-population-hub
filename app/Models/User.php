@@ -60,7 +60,7 @@ class User extends Authenticatable implements FilamentUser, HasName
         switch ($panel->getId()) {
             case 'admin':
                 return $this->usertype === 'admin';
-            case 'inputer':
+            case 'dasawisma':
                 return $this->usertype === 'dasawisma';
             case 'user':
                 return $this->usertype === 'user';
