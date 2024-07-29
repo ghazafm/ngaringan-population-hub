@@ -9,7 +9,7 @@ use Filament\Facades\Filament;
 Route::get('/', function () {
     // return view('welcome');
     return redirect('/dashboard');
-});
+})->name('home');
 
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
