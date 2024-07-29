@@ -61,7 +61,7 @@ class User extends Authenticatable implements FilamentUser, HasName
             case 'admin':
                 return $this->usertype === 'admin';
             case 'inputer':
-                return $this->usertype === 'inputer';
+                return $this->usertype === 'dasawisma';
             case 'user':
                 return $this->usertype === 'user';
             default:
