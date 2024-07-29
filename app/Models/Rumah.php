@@ -44,5 +44,8 @@ class Rumah extends Model
         'kegiatan_lingkungan',
     ];
 
+    public function penduduk(){
+        return $this->hasMany(Penduduk::class, 'id_rumah');
+    }
     // Define relationships if needed
 }
