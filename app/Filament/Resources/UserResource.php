@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Grid;
 
 class UserResource extends Resource
 {
@@ -22,20 +23,47 @@ class UserResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
+        
             ->schema([
                 Forms\Components\TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('usertype')
-                    ->required(),
-                Forms\Components\TextInput::make('rt')
-                    ->required(),
-                Forms\Components\TextInput::make('rw')
-                    ->required(),
-                Forms\Components\TextInput::make('dusun')
-                    ->required(),
+                Forms\Components\Select::make('usertype')
+                    ->required()
+                    ->options([
+                        'user'=>'User',
+                        'admin'=>'Admin',
+                        'dasawisma'=>'Dasawisma'
+                    ])
+                    ,
+                Forms\Components\Select::make('rt')
+                    ->required()
+                    ->options([
+                        '1'=>'1',
+                        '2'=>'2',
+                        '3'=>'3',
+                        '4'=>'4',
+                        '5'=>'5'
+                    ]),
+                Forms\Components\Select::make('rw')
+                    ->required()
+                    ->options([
+                        '1'=>'1',
+                        '2'=>'2',
+                        '3'=>'3',
+                    ]),
+                Forms\Components\Select::make('dusun')
+                    ->required()
+                    ->options([
+                        'gondoroso' => 'gondoroso',
+                        'purwosari' => 'purwosari',
+                        'ngaringan' => 'ngaringan',
+                        'bintang' => 'bintang',
+                    ]
+                    ),
                 Forms\Components\TextInput::make('no_telp')
                     ->tel()
+                    ->numeric()
                     ->maxLength(255)
                     ->default(null),
                 Forms\Components\TextInput::make('email')
