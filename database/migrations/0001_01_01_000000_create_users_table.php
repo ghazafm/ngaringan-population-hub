@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('rt', [1,2,3,4,5]);
             $table->enum('rw', [1,2,3]);
             $table->enum('dusun', ['gondoroso', 'purwosari', 'ngaringan', 'bintang']);
-            $table->string('no_telp');
+            $table->string('no_telp')->nullable();
             $table->string('email');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
