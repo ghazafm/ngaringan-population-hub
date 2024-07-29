@@ -36,25 +36,30 @@ class RumahResource extends Resource
                 Forms\Components\TextInput::make('dasawisma')
                     ->required()
                     ->maxLength(100),
-                Forms\Components\TextInput::make('dusun')
+                Forms\Components\Select::make('dusun')
                     ->required()
-                    ->maxLength(100),
+                    ->options([
+                        'Ngaringan' => 'Ngaringan',
+                        'Gondoroso' => 'Gondoroso',
+                        'Purwosari' => 'Purwosari',
+                        'Bintang' => 'Bintang',
+                    ]),
                 Forms\Components\TextInput::make('desa')
                     ->required()
                     ->maxLength(100)
-                    ->default('ngaringan'),
+                    ->default('Ngaringan'),
                 Forms\Components\TextInput::make('kecamatan')
                     ->required()
                     ->maxLength(100)
-                    ->default('gandusari'),
+                    ->default('Gandusari'),
                 Forms\Components\TextInput::make('kabupaten')
                     ->required()
                     ->maxLength(100)
-                    ->default('blitar'),
+                    ->default('Blitar'),
                 Forms\Components\TextInput::make('provinsi')
                     ->required()
                     ->maxLength(100)
-                    ->default('jawa timur'),
+                    ->default('Jawa Timur'),
                 Forms\Components\TextInput::make('balita')
                     ->required()
                     ->numeric()
@@ -83,13 +88,30 @@ class RumahResource extends Resource
                     ->required()
                     ->numeric()
                     ->default(0),
-                Forms\Components\TextInput::make('makanan_pokok'),
+                Forms\Components\Select::make('makanan_pokok')
+                    ->required()
+                    ->options([
+                        'Beras' => 'Beras',
+                        'Non Beras' => 'Non Beras',
+                    ]),
                 Forms\Components\Toggle::make('jamban'),
-                Forms\Components\TextInput::make('sumber_air'),
+                Forms\Components\Select::make('sumber_air')
+                    ->required()
+                    ->options([
+                        'PDAM' => 'PDAM',
+                        'Sumur' => 'Sumur',
+                        'Sungai' => 'Sungai',
+                        'Lainnya' => 'Lainnya',
+                    ]),
                 Forms\Components\Toggle::make('pembuangan_sampah'),
                 Forms\Components\Toggle::make('saluran_air_limbah'),
                 Forms\Components\Toggle::make('stiker_p4k'),
-                Forms\Components\TextInput::make('kriteria_rumah'),
+                Forms\Components\Select::make('kriteria_rumah')
+                    ->required()
+                    ->options([
+                        'Sehat' => 'Sehat',
+                        'Kurang Sehat' => 'Kurang Sehat',
+                    ]),
                 Forms\Components\Toggle::make('aktifitas_up2k'),
                 Forms\Components\Toggle::make('kegiatan_lingkungan'),
             ]);
@@ -168,6 +190,10 @@ class RumahResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\Action::make('view-penduduk')
+                ->label('View Penduduk')
+                // ->url(fn (Rumah $record) => Pages\ViewPendudukRumah::route('/' . $record->id . '/penduduk'))
+                ->icon('heroicon-o-eye'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -189,7 +215,7 @@ class RumahResource extends Resource
             'index' => Pages\ListRumahs::route('/'),
             'create' => Pages\CreateRumah::route('/create'),
             'view' => Pages\ViewRumah::route('/{record}'),
-            'view-penduduk' => Pages\ViewPendudukRumah::route('/{record}/penduduk'),
+            // 'view-penduduk' => Pages\ViewPendudukRumah::route('/{record}/penduduk'),
             'edit' => Pages\EditRumah::route('/{record}/edit'),
         ];
     }
