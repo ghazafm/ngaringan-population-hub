@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Models\Contracts\HasName;
+use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser, HasName
 {
     use HasFactory, Notifiable;
 
@@ -18,13 +20,13 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'email',
-        'no_telp',
-        'password',
-        'type',
+        'usertype',
         'rt',
         'rw',
-        'dusun'
+        'dusun',
+        'no_telp',
+        'email',
+        'password',
     ];
 
     /**
@@ -38,20 +40,19 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+        'rt' => 'integer',
+        'rw' => 'integer',
+        'dusun' => 'string',
+    ];
 
-
-     /**
+    /**
      * Determine if the user can access the given Filament panel.
      */
     public function canAccessPanel(Panel $panel): bool
