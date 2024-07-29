@@ -49,4 +49,30 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
+     /**
+     * Determine if the user can access the given Filament panel.
+     */
+    public function canAccessPanel(Panel $panel): bool
+    {
+        switch ($panel->getId()) {
+            case 'admin':
+                return $this->usertype === 'admin';
+            case 'inputer':
+                return $this->usertype === 'inputer';
+            case 'user':
+                return $this->usertype === 'user';
+            default:
+                return false;
+        }
+    }
+
+    /**
+     * Get the name of the user for display in Filament.
+     */
+    public function getFilamentName(): string
+    {
+        return $this->name;
+    }
 }
