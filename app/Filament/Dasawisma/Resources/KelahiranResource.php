@@ -5,6 +5,7 @@ namespace App\Filament\Dasawisma\Resources;
 use App\Filament\Dasawisma\Resources\KelahiranResource\Pages;
 use App\Filament\Dasawisma\Resources\KelahiranResource\RelationManagers;
 use App\Models\Kelahiran;
+use App\Models\Kehamilan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -23,10 +24,22 @@ class KelahiranResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Fertility & Mortality';
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('id_kehamilan')
+                    ->label('Nama Ibu')
+                    ->options(Kehamilan::where('status', 'melahirkan')
+                            ->with('ibu')
+                            ->get()
+                            ->pluck('ibu.nama', 'id')
+                            )
+                    ->searchable()
+                    ->required()
+                    ->native(false),
                 Forms\Components\TextInput::make('nama_bayi')
                     ->required()
                     ->maxLength(100),
@@ -39,7 +52,8 @@ class KelahiranResource extends Resource
                     ->options([
                         'Laki-laki' => 'Laki-laki',
                         'Perempuan' => 'Perempuan',
-                    ]),
+                    ])
+                    ->native(false),
             ]);
     }
 
@@ -47,8 +61,9 @@ class KelahiranResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id_kehamilan')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('kehamilan.ibu.nama')
+                    ->label('Nama Ibu')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nama_bayi')
                     ->searchable(),
@@ -77,7 +92,8 @@ class KelahiranResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ])
+                ->label('Opsi Lain'),
             ]);
     }
 

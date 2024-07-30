@@ -24,6 +24,8 @@ class PendudukResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Kependudukan';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -39,37 +41,41 @@ class PendudukResource extends Resource
                     ->maxLength(100),
                 Forms\Components\Select::make('status_perkawinan')
                     ->options([
-                        'Tidak Kawin' => 'Tidak Kawin',
-                        'Kawin' => 'Kawin',
-                    ]),
+                        'tidak kawin' => 'Tidak Kawin',
+                        'kawin' => 'Kawin',
+                    ])
+                    ->native(false),
                 Forms\Components\Select::make('kelamin')
                     ->options([
-                        'Laki-laki' => 'Laki-laki',
-                        'Perempuan' => 'Perempuan',
-                    ]),
+                        'laki-laki' => 'Laki-laki',
+                        'perempuan' => 'Perempuan',
+                    ])
+                    ->native(false),
                 Forms\Components\Select::make('pendidikan')
                     ->options([
-                        'Tidak Sekolah' => 'Tidak Sekolah',
-                        'SD' => 'SD',
-                        'SMP' => 'SMP',
-                        'SMA' => 'SMA',
-                        'D1' => 'D1',
-                        'D2' => 'D2',
-                        'D3' => 'D3',
-                        'S1' => 'S1',
-                        'S2' => 'S2',
-                        'S3' => 'S3',
-                        'Lainnya' => 'Lainnya'
-                    ]),
+                        'tidak sekolah' => 'Tidak Sekolah',
+                        'sd' => 'SD',
+                        'smp' => 'SMP',
+                        'sma' => 'SMA',
+                        'd1' => 'D1',
+                        'd2' => 'D2',
+                        'd3' => 'D3',
+                        's1' => 'S1',
+                        's2' => 'S2',
+                        's3' => 'S3',
+                        'lainnya' => 'Lainnya'
+                    ])
+                    ->native(false),
                 Forms\Components\DatePicker::make('tanggal_lahir'),
                 Forms\Components\Select::make('status_dalam_keluarga')
                     ->options([
-                        'Suami' => 'Suami',
-                        'Istri' => 'Istri',
-                        'Anak' => 'Anak',
-                        'Menantu Keluarga' => 'Menantu Keluarga',
-                        'Lainnya' => 'Lainnya',
-                    ]),
+                        'suami' => 'Suami',
+                        'istri' => 'Istri',
+                        'anak' => 'Anak',
+                        'menantu keluarga' => 'Menantu Keluarga',
+                        'lainnya' => 'Lainnya',
+                    ])
+                    ->native(false),
                 Forms\Components\TextInput::make('pekerjaan')
                     ->maxLength(100)
                     ->default(null),
@@ -78,15 +84,17 @@ class PendudukResource extends Resource
                 Forms\Components\Select::make('keterangan')
                     ->required()
                     ->options([
-                        'Penduduk' => 'Penduduk',
-                        'Pindah' => 'Pindah',
-                        'Meninggal' => 'Meninggal',
-                    ]),
+                        'penduduk' => 'Penduduk',
+                        'pindah' => 'Pindah',
+                        'meninggal' => 'Meninggal',
+                    ])
+                    ->native(false),
                 Forms\Components\Select::make('id_rumah')
                     ->required()
                     ->relationship('rumah', 'id_rumah')
                     ->options(Rumah::all()->pluck('id_rumah'))
-                    ->searchable(),
+                    ->searchable()
+                    ->native(false),
             ]);
     }
 
@@ -143,7 +151,8 @@ class PendudukResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()->requiresConfirmation(),
-                ]),
+                ])
+                ->label('Opsi Lain'),
             ]);
     }
 
