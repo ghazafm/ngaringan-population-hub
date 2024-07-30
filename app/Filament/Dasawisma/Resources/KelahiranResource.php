@@ -32,14 +32,11 @@ class KelahiranResource extends Resource
             ->schema([
                 Forms\Components\Select::make('id_kehamilan')
                     ->label('Nama Ibu')
-                    ->options(Kehamilan::where('status', 'melahirkan')
-                            ->with('ibu')
-                            ->get()
-                            ->pluck('ibu.nama', 'id')
-                            )
+                    ->relationship('kehamilan.ibu', 'nama')
                     ->searchable()
                     ->required()
                     ->native(false),
+
                 Forms\Components\TextInput::make('nama_bayi')
                     ->required()
                     ->maxLength(100),
@@ -93,7 +90,7 @@ class KelahiranResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ])
-                ->label('Opsi Lain'),
+                    ->label('Opsi Lain'),
             ]);
     }
 

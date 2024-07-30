@@ -25,4 +25,17 @@ class Kelahiran extends Model
     {
         return $this->belongsTo(Kehamilan::class, 'id_kehamilan');
     }
+
+    public function ibu()
+    {
+        return $this->hasOneThrough(
+            Penduduk::class, 
+            Kehamilan::class,
+            'id_kehamilan', 
+            'id', 
+            'id_kehamilan', 
+            'id_ibu' 
+        );
+    }
+
 }

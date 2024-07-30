@@ -36,8 +36,7 @@ return new class extends Migration
                 'strata iii'
             ])->nullable();
             $table->date('tanggal_lahir')->nullable();
-            $table->enum('status_dalam_keluarga', [
-                'kepala keluarga', 
+            $table->enum('status_dalam_keluarga', [ 
                 'suami', 
                 'istri', 
                 'anak', 
