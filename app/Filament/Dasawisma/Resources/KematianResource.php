@@ -23,6 +23,8 @@ class KematianResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Fertility & Mortality';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -32,7 +34,8 @@ class KematianResource extends Resource
                     ->options([
                         'Ibu' => 'Ibu',
                         'Anak' => 'Anak',
-                    ]),
+                    ])
+                    ->native(false),
                 Forms\Components\TextInput::make('nama')
                     ->required()
                     ->maxLength(100),
@@ -41,7 +44,8 @@ class KematianResource extends Resource
                     ->options([
                         'Laki-laki' => 'Laki-laki',
                         'Perempuan' => 'Perempuan',
-                    ]),
+                    ])
+                    ->native(false),
                 Forms\Components\DatePicker::make('tanggal')
                     ->required(),
                 Forms\Components\TextInput::make('sebab')
@@ -90,7 +94,8 @@ class KematianResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ])
+                ->label('Opsi Lain'),
             ]);
     }
 

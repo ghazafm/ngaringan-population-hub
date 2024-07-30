@@ -24,6 +24,8 @@ class RumahResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Kependudukan';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -40,27 +42,28 @@ class RumahResource extends Resource
                 Forms\Components\Select::make('dusun')
                     ->required()
                     ->options([
-                        'Ngaringan' => 'Ngaringan',
-                        'Gondoroso' => 'Gondoroso',
-                        'Purwosari' => 'Purwosari',
-                        'Bintang' => 'Bintang',
-                    ]),
+                        'ngaringan' => 'Ngaringan',
+                        'gondoroso' => 'Gondoroso',
+                        'purwosari' => 'Purwosari',
+                        'bintang' => 'Bintang',
+                    ])
+                    ->native(false),
                 Forms\Components\TextInput::make('desa')
                     ->required()
                     ->maxLength(100)
-                    ->default('Ngaringan'),
+                    ->default('ngaringan'),
                 Forms\Components\TextInput::make('kecamatan')
                     ->required()
                     ->maxLength(100)
-                    ->default('Gandusari'),
+                    ->default('gandusari'),
                 Forms\Components\TextInput::make('kabupaten')
                     ->required()
                     ->maxLength(100)
-                    ->default('Blitar'),
+                    ->default('blitar'),
                 Forms\Components\TextInput::make('provinsi')
                     ->required()
                     ->maxLength(100)
-                    ->default('Jawa Timur'),
+                    ->default('jawa timur'),
                 Forms\Components\TextInput::make('balita')
                     ->required()
                     ->numeric()
@@ -94,25 +97,28 @@ class RumahResource extends Resource
                     ->options([
                         'Beras' => 'Beras',
                         'Non Beras' => 'Non Beras',
-                    ]),
+                    ])
+                    ->native(false),
                 Forms\Components\Toggle::make('jamban'),
                 Forms\Components\Select::make('sumber_air')
                     ->required()
                     ->options([
-                        'PDAM' => 'PDAM',
-                        'Sumur' => 'Sumur',
-                        'Sungai' => 'Sungai',
-                        'Lainnya' => 'Lainnya',
-                    ]),
+                        'pdam' => 'PDAM',
+                        'sumur' => 'Sumur',
+                        'sungai' => 'Sungai',
+                        'lainnya' => 'Lainnya',
+                    ])
+                    ->native(false),
                 Forms\Components\Toggle::make('pembuangan_sampah'),
                 Forms\Components\Toggle::make('saluran_air_limbah'),
                 Forms\Components\Toggle::make('stiker_p4k'),
                 Forms\Components\Select::make('kriteria_rumah')
                     ->required()
                     ->options([
-                        'Sehat' => 'Sehat',
-                        'Kurang Sehat' => 'Kurang Sehat',
-                    ]),
+                        'sehat' => 'Sehat',
+                        'kurang sehat' => 'Kurang Sehat',
+                    ])
+                    ->native(false),
                 Forms\Components\Toggle::make('aktifitas_up2k'),
                 Forms\Components\Toggle::make('kegiatan_lingkungan'),
             ]);
@@ -191,15 +197,12 @@ class RumahResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('view-penduduk')
-                ->label('View Penduduk')
-                // ->url(fn (Rumah $record) => Pages\ViewPendudukRumah::route('/' . $record->id . '/penduduk'))
-                ->icon('heroicon-o-eye'),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()->requiresConfirmation(),
-                ]),
+                ])
+                ->label('Opsi Lain'),
             ]);
     }
 
@@ -216,7 +219,6 @@ class RumahResource extends Resource
             'index' => Pages\ListRumahs::route('/'),
             'create' => Pages\CreateRumah::route('/create'),
             'view' => Pages\ViewRumah::route('/{record}'),
-            // 'view-penduduk' => Pages\ViewPendudukRumah::route('/{record}/penduduk'),
             'edit' => Pages\EditRumah::route('/{record}/edit'),
         ];
     }

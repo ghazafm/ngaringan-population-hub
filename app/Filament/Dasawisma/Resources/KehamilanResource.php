@@ -8,6 +8,7 @@ use App\Models\Kehamilan;
 use App\Models\Penduduk;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -24,6 +25,8 @@ class KehamilanResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationGroup = 'Fertility & Mortality';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -31,11 +34,12 @@ class KehamilanResource extends Resource
                 Forms\Components\Select::make('status')
                     ->required()
                     ->options([
-                        'Hamil' => 'Hamil',
-                        'Melahirkan' => 'Melahirkan',
-                        'Nifas' => 'Nifas',
-                        'Meninggal' => 'Meninggal',
-                    ]),
+                        'hamil' => 'Hamil',
+                        'melahirkan' => 'Melahirkan',
+                        'nifas' => 'Nifas',
+                        'meninggal' => 'Meninggal',
+                    ])
+                    ->native(false),
                 Forms\Components\TextInput::make('nama_suami')
                     ->maxLength(100)
                     ->default(null),
@@ -44,7 +48,8 @@ class KehamilanResource extends Resource
                     ->label('Nama ibu')
                     ->relationship('ibu', 'nama')
                     ->options(Penduduk::where('kelamin', 'Perempuan')->pluck('nama', 'id'))
-                    ->searchable(),
+                    ->searchable()
+                    ->native(false),
             ]);
     }
 
@@ -78,7 +83,8 @@ class KehamilanResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ])
+                ->label('Opsi Lain'),
             ]);
     }
 
