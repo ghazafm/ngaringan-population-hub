@@ -24,14 +24,14 @@ return new class extends Migration
             ])->nullable();
             $table->enum('kelamin', ['laki-laki', 'perempuan'])->nullable();
             $table->enum('pendidikan', [
-                'tidak / belum sekolah',
-                'belum tamat sd / sederajat',
-                'tamat sd / sederajat',
-                'sltp / sederajat',
-                'slta / sederajat',
-                'diploma i / ii',
-                'akademi / diploma iii / sarjana muda',
-                'diploma iv / strata i',
+                'tidak/belum sekolah',
+                'belum tamat sd/sederajat',
+                'tamat sd/sederajat',
+                'sltp/sederajat',
+                'slta/sederajat',
+                'diploma i/ii',
+                'akademi/diploma iii/sarjana muda',
+                'diploma iv/strata i',
                 'strata ii',
                 'strata iii'
             ])->nullable();
@@ -50,15 +50,15 @@ return new class extends Migration
                 'lainnya'
             ])->nullable();
             $table->enum('pekerjaan', [
-                'belum / tidak bekerja', 
+                'belum/tidak bekerja', 
                 'mengurus rumah tangga', 
-                'pelajar / mahasiswa', 
+                'pelajar/mahasiswa', 
                 'pensiunan', 
                 'pegawai negeri sipil (pns)', 
                 'tentara nasional indonesia (tni)', 
                 'kepolisian ri (polri)', 
                 'perdagangan', 
-                'petani / pekebun', 
+                'petani/pekebun', 
                 'peternak', 
                 'nelayan/perikanan', 
                 'industri', 
@@ -69,7 +69,7 @@ return new class extends Migration
                 'karyawan bumd', 
                 'karyawan honorer', 
                 'buruh harian lepas', 
-                'buruh tani / perkebunan', 
+                'buruh tani/perkebunan', 
                 'buruh nelayan/perikanan', 
                 'buruh peternakan', 
                 'pembantu rumah tangga', 
@@ -93,7 +93,7 @@ return new class extends Migration
                 'pendeta', 
                 'pator', 
                 'wartawan', 
-                'ustadz / mubaligh', 
+                'ustadz/mubaligh', 
                 'juru masak', 
                 'promotor acara', 
                 'anggota dpr-ri', 
