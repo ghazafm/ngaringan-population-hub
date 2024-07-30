@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('kecamatan', 100)->default('gandusari');
             $table->string('kabupaten', 100)->default('blitar');
             $table->string('provinsi', 100)->default('jawa timur');
-            $table->unsignedBigInteger('kepala_keluarga')->nullable();
+            $table->unsignedBigInteger('kepala_rumah_tangga')->nullable();
             $table->integer('balita')->default(0);
             $table->integer('pus')->default(0);
             $table->integer('wus')->default(0);

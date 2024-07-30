@@ -4,38 +4,24 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Penduduk;
 
 class KartuKeluarga extends Model
 {
     use HasFactory;
 
-    // Disable timestamps since this model doesn't correspond to a database table
-    public $timestamps = false;
+    protected $table = 'kartu_keluarga';
 
-    // The no_kk for this KartuKeluarga instance
-    protected $no_kk;
+    protected $primaryKey = 'no_kk';
+    public $incrementing = false;
+    protected $keyType = 'bigInteger';
 
-    // Constructor to initialize no_kk
-    public function __construct($attributes = [])
-    {
-        parent::__construct($attributes);
+    public $timestamps = true;
+    protected $fillable = [
+        'no_kk',
+        'kepala_keluarga',
+    ];
 
-        // If no_kk is passed in attributes, set it
-        if (isset($attributes['no_kk'])) {
-            $this->no_kk = $attributes['no_kk'];
-        }
-    }
-
-    // Method to set no_kk
-    public function setNoKk($no_kk)
-    {
-        $this->no_kk = $no_kk;
-    }
-
-    // Method to get members of this KartuKeluarga
-    public function getMembers()
-    {
-        return Penduduk::byNoKk($this->no_kk)->get();
+    public function anggota(){
+        return $this->hasMany(Penduduk::class, 'no_kk');
     }
 }

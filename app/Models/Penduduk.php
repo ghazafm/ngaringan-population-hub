@@ -36,9 +36,4 @@ class Penduduk extends Model
     {
         return $this->belongsTo(Rumah::class, 'id_rumah');
     }
-
-    public function scopeByNoKk($query, $noKk)
-    {
-        return $query->where('no_kk', $noKk);
-    }
 }
