@@ -18,20 +18,20 @@ class PendudukSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create('id_ID');
-        $rumahIds = Rumah::pluck('id_rumah')->toArray(); // Fetch all id_rumah from rumah table
+        $rumahIds = Rumah::pluck('id_rumah')->toArray(); // Fetch all id from rumah table
         $kartuKeluarga = KartuKeluarga::pluck('no_kk')->toArray();
 
         // Define an array of job titles
         $pekerjaanOptions = [
-            'belum / tidak bekerja',
+            'belum/tidak bekerja',
             'mengurus rumah tangga',
-            'pelajar / mahasiswa',
+            'pelajar/mahasiswa',
             'pensiunan',
             'pegawai negeri sipil (pns)',
             'tentara nasional indonesia (tni)',
             'kepolisian ri (polri)',
             'perdagangan',
-            'petani / pekebun',
+            'petani/pekebun',
             'peternak',
             'nelayan/perikanan',
             'industri',
@@ -42,7 +42,7 @@ class PendudukSeeder extends Seeder
             'karyawan bumd',
             'karyawan honorer',
             'buruh harian lepas',
-            'buruh tani / perkebunan',
+            'buruh tani/perkebunan',
             'buruh nelayan/perikanan',
             'buruh peternakan',
             'pembantu rumah tangga',
@@ -66,7 +66,7 @@ class PendudukSeeder extends Seeder
             'pendeta',
             'pator',
             'wartawan',
-            'ustadz / mubaligh',
+            'ustadz/mubaligh',
             'juru masak',
             'promotor acara',
             'anggota dpr-ri',
@@ -109,19 +109,42 @@ class PendudukSeeder extends Seeder
             'perangkat desa',
             'kepala desa',
             'biarawati',
-            'wiraswasta'
+            'wiraswasta',
+            'lainnya'
         ];
 
         for ($i = 0; $i < 2000; $i++) {
             Penduduk::create([
-                'no_reg' => $faker->numerify('####'),
+                'no_reg' => $faker->optional()->numerify('####'),
                 'no_kk' => $faker->randomElement($kartuKeluarga),
                 'nama' => $faker->name,
                 'status_perkawinan' => $faker->randomElement(['belum kawin', 'kawin', 'cerai hidup', 'cerai mati']),
                 'kelamin' => $faker->randomElement(['laki-laki', 'perempuan']),
-                'pendidikan' => $faker->randomElement(['tidak / belum sekolah', 'belum tamat sd / sederajat', 'tamat sd / sederajat', 'sltp / sederajat', 'slta / sederajat', 'diploma i / ii', 'akademi / diploma iii / sarjana muda', 'diploma iv / strata i', 'strata ii', 'strata iii']),
+                'pendidikan' => $faker->randomElement([
+                    'tidak/belum sekolah',
+                    'belum tamat sd/sederajat',
+                    'tamat sd/sederajat',
+                    'sltp/sederajat',
+                    'slta/sederajat',
+                    'diploma i/ii',
+                    'akademi/diploma iii/sarjana muda',
+                    'diploma iv/strata i',
+                    'strata ii',
+                    'strata iii'
+                ]),
                 'tanggal_lahir' => $faker->date('Y-m-d', '2000-12-31'),
-                'status_dalam_keluarga' => $faker->randomElement(['kepala keluarga', 'suami', 'istri', 'anak', 'menantu', 'cucu', 'orangtua', 'mertua', 'famili lain', 'pembantu', 'lainnya']),
+                'status_dalam_keluarga' => $faker->randomElement([
+                    'suami', 
+                    'istri', 
+                    'anak', 
+                    'menantu', 
+                    'cucu', 
+                    'orangtua', 
+                    'mertua', 
+                    'famili lain', 
+                    'pembantu', 
+                    'lainnya'
+                ]),
                 'pekerjaan' => $faker->randomElement($pekerjaanOptions),
                 'pbi' => $faker->boolean,
                 'keterangan' => $faker->randomElement(['penduduk', 'pindah', 'meninggal']),
