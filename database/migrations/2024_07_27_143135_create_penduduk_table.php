@@ -26,8 +26,7 @@ return new class extends Migration
             $table->enum('keterangan', ['Penduduk', 'Pindah', 'Meninggal']);
             $table->unsignedBigInteger('id_rumah');
             $table->timestamps();
-
-            $table->foreign('id_rumah')->references('id_rumah')->on('rumah')->onDelete('cascade');
+            
         });
     }
 
@@ -38,4 +37,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('penduduk');
     }
+    
 };
