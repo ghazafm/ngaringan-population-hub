@@ -26,6 +26,7 @@ class Rumah extends Model
         'kecamatan',
         'kabupaten',
         'provinsi',
+        'kepala_rumah_tangga',
         'balita',
         'pus',
         'wus',
