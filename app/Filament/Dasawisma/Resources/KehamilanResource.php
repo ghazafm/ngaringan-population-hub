@@ -65,7 +65,7 @@ class KehamilanResource extends Resource
                 ->sortable()
                 ->searchable(),
                 Tables\Columns\TextColumn::make('nama_suami')
-                    ->label('Nama Suami')
+                    ->label('Nama Ayah')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ibu.nama')
                     ->label('Nama Ibu')
@@ -80,7 +80,7 @@ class KehamilanResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
+            ->defaultSort('updated_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
                 //
             ])
