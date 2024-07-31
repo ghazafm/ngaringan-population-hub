@@ -140,7 +140,7 @@ return new class extends Migration
             ])->nullable();
             $table->boolean('pbi')->default(false);
             $table->enum('keterangan', ['penduduk', 'pindah', 'meninggal'])->default('penduduk');
-            $table->unsignedBigInteger('id_rumah');
+            $table->unsignedBigInteger('id_rumah')->nullable();
             $table->timestamps();
         });
     }
