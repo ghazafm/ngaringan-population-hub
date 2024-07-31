@@ -50,8 +50,8 @@ class KelahiranResource extends Resource
                 Forms\Components\Select::make('kelamin')
                     ->required()
                     ->options([
-                        'Laki-laki' => 'Laki-laki',
-                        'Perempuan' => 'Perempuan',
+                        'laki-laki' => 'Laki-laki',
+                        'perempuan' => 'Perempuan',
                     ])
                     ->native(false),
             ]);
