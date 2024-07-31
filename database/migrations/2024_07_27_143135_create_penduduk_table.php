@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('penduduk', function (Blueprint $table) {
             $table->id('id');
             $table->string('no_reg')->nullable();
-            $table->unsignedBigInteger('no_kk');
+            $table->unsignedBigInteger('no_kk')->nullable();
             $table->string('nama', 100);
             $table->enum('status_perkawinan', [
                 'belum kawin', 

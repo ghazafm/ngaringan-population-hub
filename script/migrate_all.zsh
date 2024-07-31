@@ -12,4 +12,4 @@ for FILE in $MIGRATIONS_DIR/*; do
   fi
 done
 
-php artisan db:seed
+# php artisan db:seed

@@ -3,6 +3,7 @@
 namespace App\Filament\Dasawisma\Resources\KartuKeluargaResource\RelationManagers;
 
 use App\Models\Rumah;
+use App\Models\Penduduk;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
@@ -10,6 +11,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Database\Eloquent\Collection;
 
 class AnggotaRelationManager extends RelationManager
 {
@@ -196,11 +198,22 @@ class AnggotaRelationManager extends RelationManager
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->action(function (Penduduk $record) {
+                        $record->no_kk = null;
+                        $record->save();
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                        ->action(function (Collection $records) {
+                            $records->each(function (Penduduk $record) {
+                                $record->no_kk = null;
+                                $record->save();
+                            });
+                        }),
+
                 ]),
             ]);
     }
