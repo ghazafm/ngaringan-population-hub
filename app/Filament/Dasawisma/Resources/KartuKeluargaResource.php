@@ -6,6 +6,7 @@ use App\Filament\Dasawisma\Resources\KartuKeluargaResource\Pages;
 use App\Filament\Dasawisma\Resources\KartuKeluargaResource\RelationManagers;
 use App\Filament\Dasawisma\Resources\KartuKeluargaResource\RelationManagers\AnggotaRelationManager;
 use App\Models\KartuKeluarga;
+use App\Models\Penduduk;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -18,14 +19,32 @@ class KartuKeluargaResource extends Resource
 {
     protected static ?string $model = KartuKeluarga::class;
 
+    protected static ?string $label = 'Kartu Keluarga';
+
+    protected static ?string $pluralLabel = 'Kartu Keluarga';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationGroup = 'Kependudukan';
+
+    protected static ?int $navigationSort = 1; // Urutan teratas
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('kepala_keluarga')
-                    ->numeric(),
+                Forms\Components\TextInput::make('no_kk')
+                    ->label('Nomor Kartu Keluarga')
+                    ->required(),
+                Forms\Components\Select::make('kepala_keluarga')
+                    ->label('Kepala Keluarga')
+                    ->options(function ($get) {
+                        $no_kk = $get('no_kk');
+                        return Penduduk::where('no_kk', $no_kk)->pluck('nama', 'id');
+                    })
+                    ->searchable()
+                    ->visible(fn ($livewire) => $livewire instanceof Pages\EditKartuKeluarga), // only visible on edit,
             ]);
     }
 
@@ -34,11 +53,13 @@ class KartuKeluargaResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('no_kk')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('kepala_keluarga')
-                    ->numeric()
-                    ->sortable(),
+                    ->label('No. Kartu Keluarga')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('kepalaKeluarga.nama')
+                    ->label('Kepala Keluarga')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -58,7 +79,8 @@ class KartuKeluargaResource extends Resource
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ])
+                ->label('Opsi Lain'),
             ]);
     }
 

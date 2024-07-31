@@ -23,7 +23,7 @@ class KehamilanSeeder extends Seeder
         $pendudukIds = \App\Models\Penduduk::pluck('id')->toArray();
 
         for ($i = 0; $i < 100; $i++) {
-            $status = $faker->randomElement(['Hamil', 'Melahirkan', 'Nifas', 'Meninggal']);
+            $status = $faker->randomElement(['hamil', 'melahirkan', 'nifas', 'meninggal']);
 
             $kehamilan = Kehamilan::create([
                 'status' => $status,

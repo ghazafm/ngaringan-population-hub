@@ -24,19 +24,16 @@ class KelahiranResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Fertility & Mortality';
+    protected static ?string $navigationGroup = 'Kelahiran & Kematian';
+
+    protected static ?int $navigationSort = 5;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('id_kehamilan')
-                    ->label('Nama Ibu')
-                    ->relationship('kehamilan.ibu', 'nama')
-                    ->searchable()
-                    ->required()
-                    ->native(false),
-
+                Forms\Components\TextInput::make('id_kehamilan')
+                    ->label('Nama Ibu'),
                 Forms\Components\TextInput::make('nama_bayi')
                     ->required()
                     ->maxLength(100),
@@ -63,13 +60,17 @@ class KelahiranResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nama_bayi')
+                    ->label('Nama Bayi')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('tanggal_lahir')
+                    ->label('Tanggal Lahir')
                     ->date()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('akta_kelahiran')
+                    ->label('Akta Kelahiran')
                     ->boolean(),
-                Tables\Columns\TextColumn::make('kelamin'),
+                Tables\Columns\TextColumn::make('kelamin')
+                    ->label('Jenis Kelamin'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

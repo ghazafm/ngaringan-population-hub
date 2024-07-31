@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('kehamilan', function (Blueprint $table) {
             $table->id('id_kehamilan');
-            $table->enum('status', ['Hamil', 'Melahirkan', 'Nifas', 'Meninggal']);
+            $table->enum('status', ['hamil', 'melahirkan', 'nifas', 'meninggal']);
             $table->string('nama_suami', 100)->nullable();
             $table->unsignedBigInteger('id_ibu');
             $table->timestamps();

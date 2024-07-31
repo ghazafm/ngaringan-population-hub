@@ -23,12 +23,16 @@ class KematianResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    protected static ?string $navigationGroup = 'Fertility & Mortality';
+    protected static ?string $navigationGroup = 'Kelahiran & Kematian';
+
+    protected static ?int $navigationSort = 6;
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\TextInput::make('id_kehamilan')
+                    ->required(),
                 Forms\Components\Select::make('status')
                     ->required()
                     ->options([
@@ -61,13 +65,15 @@ class KematianResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('id_kehamilan')
-                    ->numeric()
+                Tables\Columns\TextColumn::make('kehamilan.ibu.nama')
+                    ->label('Nama Ibu')
+                    ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status'),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('kelamin'),
+                Tables\Columns\TextColumn::make('kelamin')
+                    ->label('Jenis Kelamin'),
                 Tables\Columns\TextColumn::make('tanggal')
                     ->date()
                     ->sortable(),

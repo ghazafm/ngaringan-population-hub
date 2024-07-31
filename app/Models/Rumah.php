@@ -48,5 +48,9 @@ class Rumah extends Model
     public function penduduk(){
         return $this->hasMany(Penduduk::class, 'id_rumah');
     }
+
+    public function krt(){
+        return $this->belongsTo(Penduduk::class, 'kepala_rumah_tangga', 'id');
+    }
     // Define relationships if needed
 }
