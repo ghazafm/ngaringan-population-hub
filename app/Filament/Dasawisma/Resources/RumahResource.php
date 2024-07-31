@@ -242,9 +242,30 @@ class RumahResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
+            ->defaultSort('updated_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
-                //
+                Tables\Filters\SelectFilter::make('dusun')
+                    ->label('Dusun')
+                    ->options([
+                        'ngaringan' => 'Ngaringan',
+                        'gondoroso' => 'Gondoroso',
+                        'purwosari' => 'Purwosari',
+                        'bintang' => 'Bintang',
+                    ]),
+                Tables\Filters\SelectFilter::make('kriteria_rumah')
+                    ->label('Kriteria Rumah')
+                    ->options([
+                        'sehat' => 'Sehat',
+                        'kurang sehat' => 'Kurang Sehat',
+                    ]),
+                Tables\Filters\SelectFilter::make('sumber_air')
+                    ->label('Sumber Air')
+                    ->options([
+                        'pdam' => 'PDAM',
+                        'sumur' => 'Sumur',
+                        'sungai' => 'Sungai',
+                        'lainnya' => 'Lainnya',
+                    ]),
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

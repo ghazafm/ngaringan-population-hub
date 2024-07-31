@@ -69,7 +69,7 @@ class KartuKeluargaResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
+            ->defaultSort('updated_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
                 //
             ])

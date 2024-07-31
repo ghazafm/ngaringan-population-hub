@@ -33,17 +33,17 @@ class KematianResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('id_kehamilan')
-                    ->label('Nama Ibu')
-                    ->relationship('kehamilan', 'id_kehamilan')
-                    ->options(Kehamilan::with('ibu')->get()->pluck('ibu.nama', 'id_kehamilan'))
+                    ->label('Nama Ayah')
+                    ->options(Kehamilan::pluck('nama_suami', 'id_kehamilan'))
                     ->searchable()
                     ->required()
+                    ->reactive()
                     ->native(false),
                 Forms\Components\Select::make('status')
                     ->required()
                     ->options([
-                        'Ibu' => 'Ibu',
-                        'Anak' => 'Anak',
+                        'ibu' => 'Ibu',
+                        'anak' => 'Anak',
                     ])
                     ->native(false),
                 Forms\Components\TextInput::make('nama')
@@ -52,8 +52,8 @@ class KematianResource extends Resource
                 Forms\Components\Select::make('kelamin')
                     ->required()
                     ->options([
-                        'Laki-laki' => 'Laki-laki',
-                        'Perempuan' => 'Perempuan',
+                        'laki-laki' => 'Laki-laki',
+                        'perempuan' => 'Perempuan',
                     ])
                     ->native(false),
                 Forms\Components\DatePicker::make('tanggal')
@@ -75,8 +75,13 @@ class KematianResource extends Resource
                     ->label('Nama Ibu')
                     ->searchable()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('kehamilan.nama_suami')
+                    ->label('Nama Ayah')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('status'),
                 Tables\Columns\TextColumn::make('nama')
+                    ->label('Nama Bayi')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('kelamin')
                     ->label('Jenis Kelamin'),
@@ -96,7 +101,7 @@ class KematianResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
+            ->defaultSort('updated_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
                 //
             ])

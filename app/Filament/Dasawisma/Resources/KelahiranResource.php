@@ -33,19 +33,21 @@ class KelahiranResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Select::make('id_kehamilan')
-                    ->label('Nama Ibu')
-                    ->relationship('kehamilan', 'id_kehamilan')
-                    ->options(Kehamilan::with('ibu')->get()->pluck('ibu.nama', 'id_kehamilan'))
+                    ->label('Nama Ayah')
+                    ->options(Kehamilan::pluck('nama_suami', 'id_kehamilan'))
                     ->searchable()
                     ->required()
                     ->reactive()
                     ->native(false),
                 Forms\Components\TextInput::make('nama_bayi')
+                    ->label('Nama Bayi')
                     ->required()
                     ->maxLength(100),
                 Forms\Components\DatePicker::make('tanggal_lahir')
+                    ->label('Tanggal Lahir')
                     ->required(),
                 Forms\Components\Toggle::make('akta_kelahiran')
+                    ->label('Akta Kelahiran')
                     ->required(),
                 Forms\Components\Select::make('kelamin')
                     ->required()
@@ -63,6 +65,10 @@ class KelahiranResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('kehamilan.ibu.nama')
                     ->label('Nama Ibu')
+                    ->searchable()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('kehamilan.nama_suami')
+                    ->label('Nama Ayah')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('nama_bayi')
@@ -86,7 +92,7 @@ class KelahiranResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
-            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
+            ->defaultSort('updated_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
                 //
             ])
