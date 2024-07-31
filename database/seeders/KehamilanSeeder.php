@@ -39,7 +39,7 @@ class KehamilanSeeder extends Seeder
                     'kelamin' => $faker->randomElement(['laki-laki', 'perempuan']),
                     'id_kehamilan' => $kehamilan->id_kehamilan,
                 ]);
-            } elseif ($status === 'Meninggal') {
+            } elseif ($status === 'meninggal') {
                 Kematian::create([
                     'status' => $faker->randomElement(['ibu', 'anak']),
                     'nama' => $faker->name,

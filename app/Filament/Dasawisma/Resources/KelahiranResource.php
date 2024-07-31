@@ -38,6 +38,7 @@ class KelahiranResource extends Resource
                     ->options(Kehamilan::with('ibu')->get()->pluck('ibu.nama', 'id_kehamilan'))
                     ->searchable()
                     ->required()
+                    ->reactive()
                     ->native(false),
                 Forms\Components\TextInput::make('nama_bayi')
                     ->required()
