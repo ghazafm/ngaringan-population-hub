@@ -4,7 +4,11 @@ namespace App\Filament\Dasawisma\Resources;
 
 use App\Filament\Dasawisma\Resources\KehamilanResource\Pages;
 use App\Filament\Dasawisma\Resources\KehamilanResource\RelationManagers;
+use App\Filament\Dasawisma\Resources\KehamilanResource\RelationManagers\KelahiranRelationManager;
+use App\Filament\Dasawisma\Resources\KehamilanResource\RelationManagers\KematianRelationManager;
 use App\Models\Kehamilan;
+use App\Models\Kelahiran;
+use App\Models\Kematian;
 use App\Models\Penduduk;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -99,7 +103,8 @@ class KehamilanResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            KelahiranRelationManager::class,
+            KematianRelationManager::class
         ];
     }
 
