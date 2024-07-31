@@ -37,8 +37,9 @@ class RumahResource extends Resource
             ->schema([
                 Forms\Components\Select::make('kepala_rumah_tangga')
                     ->label('Kepala Rumah Tangga')
-                    ->relationship('penduduk', 'nama')
+                    ->relationship('krt', 'nama')
                     ->reactive()
+                    ->nullable()
                     ->options(function ($get) {
                         $id_rumah = $get('id_rumah');
                         return Penduduk::where('id_rumah', $id_rumah)->pluck('nama', 'id');

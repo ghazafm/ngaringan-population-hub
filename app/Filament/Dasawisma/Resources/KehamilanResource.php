@@ -57,7 +57,8 @@ class KehamilanResource extends Resource
                     ->relationship('ibu', 'nama')
                     ->options(Penduduk::where('kelamin', 'Perempuan')->pluck('nama', 'id'))
                     ->searchable()
-                    ->native(false),
+                    ->native(false)
+                    ->rules(['exists:penduduk,id,kelamin,Perempuan']),
             ]);
     }
 

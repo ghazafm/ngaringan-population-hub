@@ -200,7 +200,7 @@ class PendudukResource extends Resource
                 Forms\Components\Select::make('id_rumah')
                     ->label('ID Rumah')
                     ->relationship('rumah', 'id_rumah')
-                    ->options(Rumah::all()->pluck('id_rumah'))
+                    ->options(Rumah::all()->pluck('id_rumah', 'id_rumah'))
                     ->searchable()
                     ->native(false),
             ]);
