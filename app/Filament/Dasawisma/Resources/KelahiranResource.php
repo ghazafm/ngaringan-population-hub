@@ -35,11 +35,10 @@ class KelahiranResource extends Resource
                 Forms\Components\Select::make('id_kehamilan')
                     ->label('Nama Ibu')
                     ->relationship('kehamilan', 'id_kehamilan')
-                    ->options(Kehamilan::pluck('id_kehamilan','id_kehamilan'))
+                    ->options(Kehamilan::with('ibu')->get()->pluck('ibu.nama', 'id_kehamilan'))
                     ->searchable()
                     ->required()
                     ->native(false),
-
                 Forms\Components\TextInput::make('nama_bayi')
                     ->required()
                     ->maxLength(100),
@@ -86,6 +85,7 @@ class KelahiranResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
                 //
             ])

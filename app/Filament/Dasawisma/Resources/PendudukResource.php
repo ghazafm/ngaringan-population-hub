@@ -42,7 +42,7 @@ class PendudukResource extends Resource
                 Forms\Components\Select::make('no_kk')
                     ->label('No. Kartu Keluarga')
                     ->required()
-                    ->options(KartuKeluarga::all()->pluck('no_kk'))
+                    ->options(KartuKeluarga::all()->pluck('no_kk', 'no_kk'))
                     ->searchable()
                     ->native(false),
                 Forms\Components\TextInput::make('nama')
@@ -199,7 +199,6 @@ class PendudukResource extends Resource
                     ->native(false),
                 Forms\Components\Select::make('id_rumah')
                     ->label('ID Rumah')
-                    ->required()
                     ->relationship('rumah', 'id_rumah')
                     ->options(Rumah::all()->pluck('id_rumah'))
                     ->searchable()
@@ -260,6 +259,7 @@ class PendudukResource extends Resource
                     ->sortable()
                     ->searchable(),
             ])
+            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
                 //
             ])

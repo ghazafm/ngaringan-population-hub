@@ -5,6 +5,7 @@ namespace App\Filament\Dasawisma\Resources;
 use App\Filament\Dasawisma\Resources\KematianResource\Pages;
 use App\Filament\Dasawisma\Resources\KematianResource\RelationManagers;
 use App\Models\Kematian;
+use App\Models\Kehamilan;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -31,8 +32,13 @@ class KematianResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_kehamilan')
-                    ->required(),
+                Forms\Components\Select::make('id_kehamilan')
+                    ->label('Nama Ibu')
+                    ->relationship('kehamilan', 'id_kehamilan')
+                    ->options(Kehamilan::with('ibu')->get()->pluck('ibu.nama', 'id_kehamilan'))
+                    ->searchable()
+                    ->required()
+                    ->native(false),
                 Forms\Components\Select::make('status')
                     ->required()
                     ->options([
@@ -90,6 +96,7 @@ class KematianResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
                 //
             ])

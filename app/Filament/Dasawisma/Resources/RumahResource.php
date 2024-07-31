@@ -46,9 +46,11 @@ class RumahResource extends Resource
                     ->searchable()
                     ->native(false),
                 Forms\Components\TextInput::make('rt')
+                    ->label('RT')
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('rw')
+                    ->label('RW')
                     ->required()
                     ->numeric(),
                 Forms\Components\TextInput::make('dasawisma')
@@ -63,43 +65,32 @@ class RumahResource extends Resource
                         'bintang' => 'Bintang',
                     ])
                     ->native(false),
-                Forms\Components\TextInput::make('desa')
-                    ->required()
-                    ->maxLength(100)
-                    ->default('ngaringan'),
-                Forms\Components\TextInput::make('kecamatan')
-                    ->required()
-                    ->maxLength(100)
-                    ->default('gandusari'),
-                Forms\Components\TextInput::make('kabupaten')
-                    ->required()
-                    ->maxLength(100)
-                    ->default('blitar'),
-                Forms\Components\TextInput::make('provinsi')
-                    ->required()
-                    ->maxLength(100)
-                    ->default('jawa timur'),
                 Forms\Components\TextInput::make('balita')
                     ->required()
                     ->numeric()
                     ->default(0),
                 Forms\Components\TextInput::make('pus')
+                    ->label('PUS')
                     ->required()
                     ->numeric()
                     ->default(0),
                 Forms\Components\TextInput::make('wus')
+                    ->label('WUS')
                     ->required()
                     ->numeric()
                     ->default(0),
                 Forms\Components\TextInput::make('tiga_buta')
+                    ->label('3 Buta')
                     ->required()
                     ->numeric()
                     ->default(0),
                 Forms\Components\TextInput::make('ibu_hamil')
+                    ->label('Ibu Hamil')
                     ->required()
                     ->numeric()
                     ->default(0),
                 Forms\Components\TextInput::make('ibu_menyusui')
+                    ->label('Ibu Menyusui')
                     ->required()
                     ->numeric()
                     ->default(0),
@@ -108,6 +99,7 @@ class RumahResource extends Resource
                     ->numeric()
                     ->default(0),
                 Forms\Components\Select::make('makanan_pokok')
+                    ->label('Makanan Pokok')
                     ->required()
                     ->options([
                         'Beras' => 'Beras',
@@ -116,6 +108,7 @@ class RumahResource extends Resource
                     ->native(false),
                 Forms\Components\Toggle::make('jamban'),
                 Forms\Components\Select::make('sumber_air')
+                    ->label('Sumber Air')
                     ->required()
                     ->options([
                         'pdam' => 'PDAM',
@@ -124,18 +117,24 @@ class RumahResource extends Resource
                         'lainnya' => 'Lainnya',
                     ])
                     ->native(false),
-                Forms\Components\Toggle::make('pembuangan_sampah'),
-                Forms\Components\Toggle::make('saluran_air_limbah'),
-                Forms\Components\Toggle::make('stiker_p4k'),
+                Forms\Components\Toggle::make('pembuangan_sampah')
+                    ->label('Pembuangan Sampah'),
+                Forms\Components\Toggle::make('saluran_air_limbah')
+                    ->label('Saluran Air Limbah'),
+                Forms\Components\Toggle::make('stiker_p4k')
+                    ->label('Stiker P4K'),
                 Forms\Components\Select::make('kriteria_rumah')
+                    ->label('Kriteria Rumah')
                     ->required()
                     ->options([
                         'sehat' => 'Sehat',
                         'kurang sehat' => 'Kurang Sehat',
                     ])
                     ->native(false),
-                Forms\Components\Toggle::make('aktifitas_up2k'),
-                Forms\Components\Toggle::make('kegiatan_lingkungan'),
+                Forms\Components\Toggle::make('aktifitas_up2k')
+                    ->label('Aktivitas UP2K'),
+                Forms\Components\Toggle::make('kegiatan_lingkungan')
+                    ->label('Kegiatan Lingkungan'),
             ]);
     }
 
@@ -243,6 +242,7 @@ class RumahResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
+            ->defaultSort('created_at', 'desc') // Mengurutkan berdasarkan kolom created_at secara menurun
             ->filters([
                 //
             ])
