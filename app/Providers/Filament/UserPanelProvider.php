@@ -23,6 +23,10 @@ class UserPanelProvider extends PanelProvider
     public function panel(Panel $panel): Panel
     {
         return $panel
+            ->favicon('images/logo_only.png')
+            //->topNavigation()
+            ->brandName('Administrasi Kependudukan Desa Ngaringan')
+            ->brandLogo(asset('images/logo_only.png'))
             ->id('user')
             ->path('user')
             ->colors([
@@ -36,7 +40,6 @@ class UserPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/User/Widgets'), for: 'App\\Filament\\User\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,

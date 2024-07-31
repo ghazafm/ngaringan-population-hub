@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-2 {
+        font-family: NordicSans, Nordic;
+        font-size: 119.34px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #f29f0e;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+    </style>
+  </defs>
+  <g>
+    <polygon class="cls-3" points="93.02 723.98 20.91 723.38 20.91 460.92 93.02 426.64 93.02 723.98"/>
+    <polygon class="cls-3" points="181.69 495.59 109.57 495.59 109.57 420.84 145.63 402 181.69 420.84 181.69 495.59"/>
+    <polygon class="cls-3" points="198.24 723.98 270.36 723.38 270.36 460.92 198.24 426.64 198.24 723.98"/>
+  </g>
+  <text class="cls-2" transform="translate(335.79 560.25)"><tspan x="0" y="0">ADMINI</tspan><tspan class="cls-4" x="361.35" y="0">S</tspan><tspan class="cls-5" x="428.06" y="0">TR</tspan><tspan class="cls-1" x="566.14" y="0">A</tspan><tspan x="639.29" y="0">SI</tspan><tspan x="0" y="102.94">NGARINGAN</tspan></text>
+</svg>
