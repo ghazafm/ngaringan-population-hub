@@ -25,7 +25,7 @@ class KelahiranSeeder extends Seeder
                 'nama_bayi' => $faker->firstName,
                 'tanggal_lahir' => $faker->date,
                 'akta_kelahiran' => $faker->boolean,
-                'kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                'kelamin' => $faker->randomElement(['laki-laki', 'perempuan']),
                 'id_kehamilan' => $faker->optional()->randomElement($kehamilanIds),
             ]);
         }
