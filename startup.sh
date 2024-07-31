@@ -1,6 +1,22 @@
-#!/bin/zsh
+#!/usr/bin/expect -f
 
-php artisan make:filament-user
-admin
-admin@admin.com
-admin123
+# Set the timeout for responses
+set timeout -1
+
+# Start the make:filament-user command
+spawn php artisan make:filament-user
+
+# Provide the name input
+expect "Name"
+send -- "admin\r"
+
+# Provide the email address input
+expect "Email address"
+send -- "admin@ngaringan.com\r"
+
+# Provide the password input
+expect "Password"
+send -- "admin123\r"
+
+# Wait for the command to finish
+expect eof

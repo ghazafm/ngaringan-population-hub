@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('kematian', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_kehamilan');
-            $table->enum('status', ['Ibu', 'Anak']);
+            $table->enum('status', ['ibu', 'anak']);
             $table->string('nama', 100);
-            $table->enum('kelamin', ['Laki-laki', 'Perempuan']);
+            $table->enum('kelamin', ['laki-laki', 'perempuan']);
             $table->date('tanggal');
             $table->string('sebab', 255)->nullable();
             $table->string('keterangan', 255)->nullable();
