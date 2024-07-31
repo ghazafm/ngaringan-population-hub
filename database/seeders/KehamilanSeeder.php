@@ -31,19 +31,19 @@ class KehamilanSeeder extends Seeder
                 'id_ibu' => $faker->randomElement($pendudukIds),
             ]);
 
-            if ($status === 'Melahirkan' || $status === 'Nifas') {
+            if ($status === 'melahirkan' || $status === 'nifas') {
                 Kelahiran::create([
                     'nama_bayi' => $faker->firstName,
                     'tanggal_lahir' => $faker->date,
                     'akta_kelahiran' => $faker->boolean,
-                    'kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                    'kelamin' => $faker->randomElement(['laki-laki', 'perempuan']),
                     'id_kehamilan' => $kehamilan->id_kehamilan,
                 ]);
             } elseif ($status === 'Meninggal') {
                 Kematian::create([
-                    'status' => $faker->randomElement(['Ibu', 'Anak']),
+                    'status' => $faker->randomElement(['ibu', 'anak']),
                     'nama' => $faker->name,
-                    'kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                    'kelamin' => $faker->randomElement(['laki-laki', 'perempuan']),
                     'tanggal' => $faker->date,
                     'sebab' => $faker->optional()->sentence,
                     'keterangan' => $faker->sentence,
