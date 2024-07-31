@@ -11,3 +11,5 @@ for FILE in $MIGRATIONS_DIR/*; do
     php artisan migrate --path="$FILE"
   fi
 done
+
+# php artisan db:seed

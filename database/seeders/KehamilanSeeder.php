@@ -22,8 +22,8 @@ class KehamilanSeeder extends Seeder
         // Assuming you have Penduduk data available, we'll get IDs from Penduduk table
         $pendudukIds = \App\Models\Penduduk::pluck('id')->toArray();
 
-        for ($i = 0; $i < 20; $i++) {
-            $status = $faker->randomElement(['Hamil', 'Melahirkan', 'Nifas', 'Meninggal']);
+        for ($i = 0; $i < 100; $i++) {
+            $status = $faker->randomElement(['hamil', 'melahirkan', 'nifas', 'meninggal']);
 
             $kehamilan = Kehamilan::create([
                 'status' => $status,
@@ -31,19 +31,19 @@ class KehamilanSeeder extends Seeder
                 'id_ibu' => $faker->randomElement($pendudukIds),
             ]);
 
-            if ($status === 'Melahirkan' || $status === 'Nifas') {
+            if ($status === 'melahirkan' || $status === 'nifas') {
                 Kelahiran::create([
                     'nama_bayi' => $faker->firstName,
                     'tanggal_lahir' => $faker->date,
                     'akta_kelahiran' => $faker->boolean,
-                    'kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                    'kelamin' => $faker->randomElement(['laki-laki', 'perempuan']),
                     'id_kehamilan' => $kehamilan->id_kehamilan,
                 ]);
-            } elseif ($status === 'Meninggal') {
+            } elseif ($status === 'meninggal') {
                 Kematian::create([
-                    'status' => $faker->randomElement(['Ibu', 'Anak']),
+                    'status' => $faker->randomElement(['ibu', 'anak']),
                     'nama' => $faker->name,
-                    'kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                    'kelamin' => $faker->randomElement(['laki-laki', 'perempuan']),
                     'tanggal' => $faker->date,
                     'sebab' => $faker->optional()->sentence,
                     'keterangan' => $faker->sentence,

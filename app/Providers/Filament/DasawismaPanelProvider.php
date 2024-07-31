@@ -28,6 +28,7 @@ class DasawismaPanelProvider extends PanelProvider
             ->colors([
                 'primary' => Color::Amber,
             ])
+            ->brandName('Administrasi Kependudukan Desa Ngaringan')
             ->discoverResources(in: app_path('Filament/Dasawisma/Resources'), for: 'App\\Filament\\Dasawisma\\Resources')
             ->discoverPages(in: app_path('Filament/Dasawisma/Pages'), for: 'App\\Filament\\Dasawisma\\Pages')
             ->pages([
@@ -36,7 +37,7 @@ class DasawismaPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Dasawisma/Widgets'), for: 'App\\Filament\\Dasawisma\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
-                Widgets\FilamentInfoWidget::class,
+                // Widgets\FilamentInfoWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
