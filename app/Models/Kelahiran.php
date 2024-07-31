@@ -11,7 +11,7 @@ class Kelahiran extends Model
 
     protected $table = 'kelahiran';
 
-    protected $primaryKey = 'id_kehamilan';
+    protected $primaryKey = 'id';
 
     public $incrementing = true;
 
@@ -24,18 +24,6 @@ class Kelahiran extends Model
     public function kehamilan()
     {
         return $this->belongsTo(Kehamilan::class, 'id_kehamilan');
-    }
-
-    public function ibu()
-    {
-        return $this->hasOneThrough(
-            Penduduk::class, 
-            Kehamilan::class,
-            'id_kehamilan', 
-            'id', 
-            'id_kehamilan', 
-            'id_ibu' 
-        );
     }
 
 }

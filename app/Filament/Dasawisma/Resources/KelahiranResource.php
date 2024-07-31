@@ -32,8 +32,14 @@ class KelahiranResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_kehamilan')
-                    ->label('Nama Ibu'),
+                Forms\Components\Select::make('id_kehamilan')
+                    ->label('Nama Ibu')
+                    ->relationship('kehamilan', 'id_kehamilan')
+                    ->options(Kehamilan::pluck('id_kehamilan','id_kehamilan'))
+                    ->searchable()
+                    ->required()
+                    ->native(false),
+
                 Forms\Components\TextInput::make('nama_bayi')
                     ->required()
                     ->maxLength(100),

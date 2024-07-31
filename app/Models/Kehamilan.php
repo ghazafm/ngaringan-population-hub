@@ -26,11 +26,11 @@ class Kehamilan extends Model
 
     public function kelahiran()
     {
-        return $this->hasMany(Kelahiran::class, 'id_kehamilan', 'id_kehamilan');
+        return $this->hasMany(Kelahiran::class, 'id_kehamilan');
     }
 
     public function kematian()
     {
-        return $this->hasMany(Kematian::class, 'id_kehamilan', 'id_kehamilan');
+        return $this->hasMany(Kematian::class, 'id_kehamilan');
     }
 }

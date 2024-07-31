@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         // Ensure the column in kartu_keluarga is indexed
-        Schema::table('kartu_keluarga', function (Blueprint $table) {
-            $table->index('no_kk');
-        });
+        // Schema::table('kartu_keluarga', function (Blueprint $table) {
+        //     $table->index('no_kk');
+        // });
 
         // Adding foreign key constraint to the `penduduk` table
         Schema::table('penduduk', function (Blueprint $table) {

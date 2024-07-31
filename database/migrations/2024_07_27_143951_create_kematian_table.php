@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('kematian', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('id_kehamilan');
             $table->enum('status', ['Ibu', 'Anak']);
             $table->string('nama', 100);
