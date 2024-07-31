@@ -32,7 +32,8 @@ class KelahiranResource extends Resource
             ->schema([
                 Forms\Components\Select::make('id_kehamilan')
                     ->label('Nama Ibu')
-                    ->relationship('kehamilan.ibu', 'nama')
+                    ->relationship('kehamilan', 'id_kehamilan')
+                    ->options(Kehamilan::pluck('id_kehamilan','id_kehamilan'))
                     ->searchable()
                     ->required()
                     ->native(false),
