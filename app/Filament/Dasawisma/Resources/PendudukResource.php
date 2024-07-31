@@ -4,6 +4,7 @@ namespace App\Filament\Dasawisma\Resources;
 
 use App\Filament\Dasawisma\Resources\PendudukResource\Pages;
 use App\Filament\Dasawisma\Resources\PendudukResource\RelationManagers;
+use App\Models\KartuKeluarga;
 use App\Models\Penduduk;
 use App\Models\Rumah;
 use Filament\Forms;
@@ -13,6 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use PhpParser\Node\Stmt\Label;
 
 class PendudukResource extends Resource
 {
@@ -26,23 +28,33 @@ class PendudukResource extends Resource
 
     protected static ?string $navigationGroup = 'Kependudukan';
 
+    protected static ?int $navigationSort = 3;
+
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('no_reg')
+                    ->label('No. Reg')
                     ->maxLength(255)
                     ->default(null),
-                Forms\Components\TextInput::make('no_kk')
+                Forms\Components\Select::make('no_kk')
+                    ->label('No. Kartu Keluarga')
                     ->required()
-                    ->maxLength(255),
+                    ->options(KartuKeluarga::all()->pluck('no_kk'))
+                    ->searchable()
+                    ->native(false),
                 Forms\Components\TextInput::make('nama')
                     ->required()
                     ->maxLength(100),
                 Forms\Components\Select::make('status_perkawinan')
+                    ->label('Status Perkawinan')
                     ->options([
-                        'tidak kawin' => 'Tidak Kawin',
-                        'kawin' => 'Kawin',
+                        'belum kawin' => 'Belum Kawin', 
+                        'kawin' => 'Kawin', 
+                        'cerai hidup' => 'Cerai Hidup', 
+                        'cerai mati' => 'Cerai Mati',
                     ])
                     ->native(false),
                 Forms\Components\Select::make('kelamin')
@@ -53,17 +65,16 @@ class PendudukResource extends Resource
                     ->native(false),
                 Forms\Components\Select::make('pendidikan')
                     ->options([
-                        'tidak sekolah' => 'Tidak Sekolah',
-                        'sd' => 'SD',
-                        'smp' => 'SMP',
-                        'sma' => 'SMA',
-                        'd1' => 'D1',
-                        'd2' => 'D2',
-                        'd3' => 'D3',
-                        's1' => 'S1',
-                        's2' => 'S2',
-                        's3' => 'S3',
-                        'lainnya' => 'Lainnya'
+                        'tidak/belum sekolah' => 'Tidak/Belum Sekolah',
+                        'belum tamat sd/sederajat' => 'Belum Tamat SD/Sederajat',
+                        'tamat sd/sederajat' => 'Tamat SD/Sederajat',
+                        'sltp/sederajat' => 'SLTP/Sederajat',
+                        'slta/sederajat' => 'SLTA/Sederajat',
+                        'diploma i/ii' => 'Diploma I/II',
+                        'akademi/diploma iii/sarjana muda' => 'Akademi/Diploma III/Sarjana Muda',
+                        'diploma iv/strata i' => 'Diploma IV/Strata I',
+                        'strata ii' => 'Strata II',
+                        'strata iii' => 'Strata III',
                     ])
                     ->native(false),
                 Forms\Components\DatePicker::make('tanggal_lahir'),
@@ -72,14 +83,111 @@ class PendudukResource extends Resource
                         'suami' => 'Suami',
                         'istri' => 'Istri',
                         'anak' => 'Anak',
-                        'menantu keluarga' => 'Menantu Keluarga',
+                        'menantu' => 'Menantu',
+                        'cucu' => 'Cucu',
+                        'orangtua' => 'Orangtua',
+                        'mertua' => 'Mertua',
+                        'famili lain' => 'Famili Lain',
+                        'pembantu' => 'Pembantu',
                         'lainnya' => 'Lainnya',
                     ])
                     ->native(false),
-                Forms\Components\TextInput::make('pekerjaan')
-                    ->maxLength(100)
-                    ->default(null),
-                Forms\Components\Toggle::make('Penerima Bantuan Iuran')
+                Forms\Components\Select::make('pekerjaan')
+                    ->options([
+                        'belum/tidak bekerja' => 'Belum/Tidak Bekerja',
+                        'mengurus rumah tangga' => 'Mengurus Rumah Tangga',
+                        'pelajar/mahasiswa' => 'Pelajar/Mahasiswa',
+                        'pensiunan' => 'Pensiunan',
+                        'pegawai negeri sipil (pns)' => 'Pegawai Negeri Sipil (PNS)',
+                        'tentara nasional indonesia (tni)' => 'Tentara Nasional Indonesia (TNI)',
+                        'kepolisian ri (polri)' => 'Kepolisian RI (Polri)',
+                        'perdagangan' => 'Perdagangan',
+                        'petani/pekebun' => 'Petani/Pekebun',
+                        'peternak' => 'Peternak',
+                        'nelayan/perikanan' => 'Nelayan/Perikanan',
+                        'industri' => 'Industri',
+                        'konstruksi' => 'Konstruksi',
+                        'transportasi' => 'Transportasi',
+                        'karyawan swasta' => 'Karyawan Swasta',
+                        'karyawan bumn' => 'Karyawan BUMN',
+                        'karyawan bumd' => 'Karyawan BUMD',
+                        'karyawan honorer' => 'Karyawan Honorer',
+                        'buruh harian lepas' => 'Buruh Harian Lepas',
+                        'buruh tani/perkebunan' => 'Buruh Tani/Perkebunan',
+                        'buruh nelayan/perikanan' => 'Buruh Nelayan/Perikanan',
+                        'buruh peternakan' => 'Buruh Peternakan',
+                        'pembantu rumah tangga' => 'Pembantu Rumah Tangga',
+                        'tukang cukur' => 'Tukang Cukur',
+                        'tukang listrik' => 'Tukang Listrik',
+                        'tukang batu' => 'Tukang Batu',
+                        'tukang kayu' => 'Tukang Kayu',
+                        'tukang sol sepatu' => 'Tukang Sol Sepatu',
+                        'tukang las/pandai besi' => 'Tukang Las/Pandai Besi',
+                        'tukang jahit' => 'Tukang Jahit',
+                        'tukang gigi' => 'Tukang Gigi',
+                        'penata rias' => 'Penata Rias',
+                        'penata busana' => 'Penata Busana',
+                        'mekanik' => 'Mekanik',
+                        'seniman' => 'Seniman',
+                        'tabib' => 'Tabib',
+                        'paraji' => 'Paraji',
+                        'perancang busana' => 'Perancang Busana',
+                        'penerjemah' => 'Penerjemah',
+                        'imam masjid' => 'Imam Masjid',
+                        'pendeta' => 'Pendeta',
+                        'pastor' => 'Pastor',
+                        'wartawan' => 'Wartawan',
+                        'ustadz/mubaligh' => 'Ustadz/Mubaligh',
+                        'juru masak' => 'Juru Masak',
+                        'promotor acara' => 'Promotor Acara',
+                        'anggota dpr-ri' => 'Anggota DPR-RI',
+                        'anggota dpd' => 'Anggota DPD',
+                        'anggota bpk' => 'Anggota BPK',
+                        'presiden' => 'Presiden',
+                        'wakil presiden' => 'Wakil Presiden',
+                        'anggota mahkamah konstitusi' => 'Anggota Mahkamah Konstitusi',
+                        'anggota kabinet kementrian' => 'Anggota Kabinet Kementrian',
+                        'duta besar' => 'Duta Besar',
+                        'gubernur' => 'Gubernur',
+                        'wakil gubernur' => 'Wakil Gubernur',
+                        'bupati' => 'Bupati',
+                        'wakil bupati' => 'Wakil Bupati',
+                        'walikota' => 'Walikota',
+                        'wakil walikota' => 'Wakil Walikota',
+                        'anggota dprp prop.' => 'Anggota DPRP Prop.',
+                        'anggota dprp kab.' => 'Anggota DPRP Kab.',
+                        'dosen' => 'Dosen',
+                        'guru' => 'Guru',
+                        'pilot' => 'Pilot',
+                        'pengacara' => 'Pengacara',
+                        'notaris' => 'Notaris',
+                        'arsitek' => 'Arsitek',
+                        'akuntan' => 'Akuntan',
+                        'konsultan' => 'Konsultan',
+                        'dokter' => 'Dokter',
+                        'bidan' => 'Bidan',
+                        'perawat' => 'Perawat',
+                        'apoteker' => 'Apoteker',
+                        'psikiater/psikolog' => 'Psikiater/Psikolog',
+                        'penyiar televisi' => 'Penyiar Televisi',
+                        'penyiar radio' => 'Penyiar Radio',
+                        'pelaut' => 'Pelaut',
+                        'peneliti' => 'Peneliti',
+                        'sopir' => 'Sopir',
+                        'pialang' => 'Pialang',
+                        'paranormal' => 'Paranormal',
+                        'pedagang' => 'Pedagang',
+                        'perangkat desa' => 'Perangkat Desa',
+                        'kepala desa' => 'Kepala Desa',
+                        'biarawati' => 'Biarawati',
+                        'wiraswasta' => 'Wiraswasta',
+                        'lainnya' => 'Lainnya',
+                        ])
+                        ->default(null)
+                        ->searchable()
+                        ->native(false),
+                Forms\Components\Toggle::make('pbi')
+                    ->label('Penerima Bantuan Iuran')
                     ->required(),
                 Forms\Components\Select::make('keterangan')
                     ->required()
@@ -90,6 +198,7 @@ class PendudukResource extends Resource
                     ])
                     ->native(false),
                 Forms\Components\Select::make('id_rumah')
+                    ->label('ID Rumah')
                     ->required()
                     ->relationship('rumah', 'id_rumah')
                     ->options(Rumah::all()->pluck('id_rumah'))
@@ -105,13 +214,18 @@ class PendudukResource extends Resource
                 Tables\Columns\TextColumn::make('no_reg')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('no_kk')
-                    ->searchable(),
+                    ->label('No. Kartu Keluarga')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('status_perkawinan')
+                    ->label('Status Perkawinan')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('kelamin'),
+                Tables\Columns\TextColumn::make('kelamin')
+                    ->label('Jenis Kelamin')
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('pendidikan')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tanggal_lahir')
@@ -122,11 +236,14 @@ class PendudukResource extends Resource
                 Tables\Columns\TextColumn::make('pekerjaan')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('pbi')
+                    ->label('PBI')
                     ->boolean()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('keterangan')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('id_rumah')
+                    ->label('ID Rumah')
                     ->numeric()
                     ->sortable()
                     ->searchable(),
@@ -139,7 +256,9 @@ class PendudukResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('rumah.dasawisma')
-                    ->label('Dasawisma'),
+                    ->label('Dasawisma')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 //

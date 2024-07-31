@@ -6,8 +6,10 @@ use App\Filament\Dasawisma\Resources\RumahResource\Pages;
 use App\Filament\Dasawisma\Resources\RumahResource\RelationManagers;
 use App\Filament\Dasawisma\Resources\RumahResource\RelationManagers\PendudukRelationManager;
 use App\Models\Rumah;
+use App\Models\Penduduk;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\FormsComponent;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -26,10 +28,23 @@ class RumahResource extends Resource
 
     protected static ?string $navigationGroup = 'Kependudukan';
 
+    protected static ?int $navigationSort = 2;
+
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                Forms\Components\Select::make('kepala_rumah_tangga')
+                    ->label('Kepala Rumah Tangga')
+                    ->relationship('penduduk', 'nama')
+                    ->reactive()
+                    ->options(function ($get) {
+                        $id_rumah = $get('id_rumah');
+                        return Penduduk::where('id_rumah', $id_rumah)->pluck('nama', 'id');
+                    })
+                    ->searchable()
+                    ->native(false),
                 Forms\Components\TextInput::make('rt')
                     ->required()
                     ->numeric(),
@@ -128,16 +143,28 @@ class RumahResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\TextColumn::make('id_rumah')
+                    ->label('ID Rumah')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('krt.nama')
+                    ->label('Kepala Rumah Tangga')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('rt')
+                    ->label('RT')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('rw')
+                    ->label('RW')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('dasawisma')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('dusun')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('desa')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('kecamatan')
@@ -150,38 +177,63 @@ class RumahResource extends Resource
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('pus')
+                    ->label('PUS')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('wus')
+                    ->label('WUS')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('tiga_buta')
+                    ->label('3 Buta')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ibu_hamil')
+                    ->label('Ibu Hamil')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('ibu_menyusui')
+                    ->label('Ibu Menyusui')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('lansia')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('makanan_pokok'),
+                Tables\Columns\TextColumn::make('makanan_pokok')
+                    ->label('Makanan Pokok')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\IconColumn::make('jamban')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('sumber_air'),
+                    ->boolean()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('sumber_air')
+                    ->label('Sumber Air')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\IconColumn::make('pembuangan_sampah')
-                    ->boolean(),
+                    ->label('Pembuangan Sampah')
+                    ->boolean()
+                    ->sortable(),
                 Tables\Columns\IconColumn::make('saluran_air_limbah')
-                    ->boolean(),
+                    ->label('Saluran Air Limbah')
+                    ->boolean()
+                    ->sortable(),
                 Tables\Columns\IconColumn::make('stiker_p4k')
-                    ->boolean(),
-                Tables\Columns\TextColumn::make('kriteria_rumah'),
+                    ->label('Stiker P4K')
+                    ->boolean()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('kriteria_rumah')
+                    ->label('Kriteria Rumah')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\IconColumn::make('aktifitas_up2k')
-                    ->boolean(),
+                    ->label('Aktivitas UP2K')
+                    ->boolean()
+                    ->sortable(),
                 Tables\Columns\IconColumn::make('kegiatan_lingkungan')
-                    ->boolean(),
+                    ->label('Kegiatan Lingkungan')
+                    ->boolean()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

@@ -25,7 +25,7 @@ class KartuKeluarga extends Model
         return $this->hasMany(Penduduk::class, 'no_kk');
     }
 
-    public function kepala_keluarga(){
+    public function kepalaKeluarga(){
         return $this->belongsTo(Penduduk::class, 'kepala_keluarga');
     }
 }
