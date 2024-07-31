@@ -202,7 +202,8 @@ class AnggotaRelationManager extends RelationManager
                     ->action(function (Penduduk $record) {
                         $record->no_kk = null;
                         $record->save();
-                    }),
+                    })
+                    ->requiresConfirmation(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -212,7 +213,8 @@ class AnggotaRelationManager extends RelationManager
                                 $record->no_kk = null;
                                 $record->save();
                             });
-                        }),
+                        })
+                        ->requiresConfirmation(),
 
                 ]),
             ]);

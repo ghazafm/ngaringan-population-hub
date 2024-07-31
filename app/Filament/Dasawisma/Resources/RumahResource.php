@@ -271,12 +271,18 @@ class RumahResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                    ->action(function (Rumah $record) {
+                        Penduduk::where('id_rumah', $record->id_rumah)->update(['id_rumah' => null]);
+                        
+                        $record->delete();
+                    }),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make()->requiresConfirmation(),
                 ])
-                ->label('Opsi Lain'),
+                    ->label('Opsi Lain'),
             ]);
     }
 

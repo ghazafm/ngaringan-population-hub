@@ -255,7 +255,8 @@ class PendudukRelationManager extends RelationManager
                                 $record->id_rumah = null;
                                 $record->save();
                             });
-                        }),
+                        })
+                        ->requiresConfirmation(),
 
                 ])
                 ->label('Opsi Lain'),

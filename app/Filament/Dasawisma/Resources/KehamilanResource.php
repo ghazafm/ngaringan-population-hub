@@ -92,10 +92,25 @@ class KehamilanResource extends Resource
             ->actions([
                 Tables\Actions\ViewAction::make(),
                 Tables\Actions\EditAction::make(),
+                Tables\Actions\DeleteAction::make()
+                ->action(function (Kehamilan $record){
+                        $record->kelahiran()->delete();
+                        $record->kematian()->delete();
+                        $record->delete();
+                })
+                ->requiresConfirmation(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                    Tables\Actions\DeleteBulkAction::make()
+                    ->action(function ($records){
+                        foreach ($records as $record) {
+                            $record->kelahiran()->delete();
+                            $record->kematian()->delete();
+                            $record->delete();
+                        }
+                    })
+                    ->requiresConfirmation(),
                 ])
                 ->label('Opsi Lain'),
             ]);
