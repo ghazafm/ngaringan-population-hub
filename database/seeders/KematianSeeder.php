@@ -22,9 +22,9 @@ class KematianSeeder extends Seeder
 
         for ($i = 0; $i < 20; $i++) {
             Kematian::create([
-                'status' => $faker->randomElement(['Ibu', 'Anak']),
+                'status' => $faker->randomElement(['ibu', 'anak']),
                 'nama' => $faker->name,
-                'kelamin' => $faker->randomElement(['Laki-laki', 'Perempuan']),
+                'kelamin' => $faker->randomElement(['laki-laki', 'perempuan']),
                 'tanggal' => $faker->date,
                 'sebab' => $faker->optional()->sentence,
                 'keterangan' => $faker->sentence,

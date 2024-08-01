@@ -11,7 +11,7 @@ class Kematian extends Model
 
     protected $table = 'kematian';
 
-    protected $primaryKey = 'id_kehamilan';
+    protected $primaryKey = 'id';
 
     public $incrementing = true;
 
