@@ -38,7 +38,7 @@
 
         .image-section {
             flex: 1;
-            background: url('images/image1.jpeg') no-repeat center center;
+            background: url('images/gotong3.jpg') no-repeat center center;
             background-size: cover;
             border-top-left-radius: 8px;
             border-bottom-left-radius: 8px;
