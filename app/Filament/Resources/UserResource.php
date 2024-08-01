@@ -100,7 +100,9 @@ class UserResource extends Resource
                         ->required()
                         ->maxLength(255)
                         ->columnSpan(2)
-                        ->revealable(),
+                        ->revealable()
+                        ->dehydrateStateUsing(fn ($state) => !empty($state) ? bcrypt($state) : null)
+                        ->required(fn ($context) => $context === 'create'),
                         ])->columns(4)
                     ])
                     ;
@@ -120,6 +122,9 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                    Tables\Columns\TextColumn::make('password')
+                    ->searchable()
+                    ->hidden(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
