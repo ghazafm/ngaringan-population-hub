@@ -23,7 +23,7 @@
 
 ## 🚀 Project Description
 
-Administrasi Kependudukan Desa Ngaringan is a comprehensive web application designed to facilitate the management of population data in Ngaringan Village, Blitar Regency. This platform centralizes the administration of various types of data including resident records, family cards, housing information, and health data for pregnant women. It serves as a vital tool for village administrators (supervisors) and dasawisma (data inputters), providing a streamlined approach to data entry, management, and oversight.
+The **Population Administration System for Ngaringan Village** is a comprehensive web application designed to streamline the management of population data in Ngaringan Village, Blitar Regency. This platform centralizes various types of data, including resident records, family cards, housing information, and health data for pregnant women. It serves as a vital tool for village administrators (supervisors) and dasawisma (data inputters), offering a streamlined approach to data entry, management, and oversight.
 
 ## ⭐ Main Features
 
@@ -66,7 +66,7 @@ Administrasi Kependudukan Desa Ngaringan is a comprehensive web application desi
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/ghazafm/administrasi-dasawisma-ngaringan.git
+   git clone https://github.com/ghazafm/ngaringan-population-hub.git
    ```
 
 2. **Navigate to the Project Folder**
@@ -90,7 +90,7 @@ Administrasi Kependudukan Desa Ngaringan is a comprehensive web application desi
    ```
 
 6. **Seed the Database with Dummy Data** (Optional)
-   To seed the database using Laravel Sail, modify `docker-compose.yml` to include `DB_SEED` environment variable:
+   To seed the database using Laravel Sail, modify `docker-compose.yml` to include the `DB_SEED` environment variable:
    ```yaml
    environment:
        ...
