@@ -1,12 +1,37 @@
 # Administrasi Kependudukan Desa Ngaringan
 
-## Description
+## Meet Our Team
 
-This website is designed for managing population administration processes in Ngaringan Village, Blitar Regency. It serves as a central repository for various population-related data, including resident information, family cards, and housing details. Additionally, it contains health data relevant to public health authorities, such as information on pregnant women. The platform is used by village administrators (as supervisors) and dasawisma (data inputters).
+1. **Fauzan Ghaza Madani** - Backend Developer, Product Manager
+2. **[Your Team Members]** - [Their Roles]
 
-## Installation
+## Project Description
 
-### Steps to Clone and Set Up the Project
+Administrasi Kependudukan Desa Ngaringan is a web application designed to streamline the administration of population data in Ngaringan Village, Blitar Regency. This platform centralizes the management of resident data, family cards, housing information, and health data for pregnant women. It is intended for use by village administrators (supervisors) and dasawisma (data inputters).
+
+## Tech Stack
+
+- **Frontend:**
+  - ![HTML](https://img.shields.io/badge/HTML-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+  - ![CSS](https://img.shields.io/badge/CSS-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+  - ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white)
+  - ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+
+- **Backend:**
+  - ![Laravel](https://img.shields.io/badge/Laravel-FB5034?style=for-the-badge&logo=laravel&logoColor=white)
+  - ![Filament](https://img.shields.io/badge/Filament-FF3C7C?style=for-the-badge&logo=laravel&logoColor=white)
+
+- **Database:**
+  - ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+  - ![phpMyAdmin](https://img.shields.io/badge/phpMyAdmin-6C78AF?style=for-the-badge&logo=phpmyadmin&logoColor=white)
+
+- **Cloud Services:**
+  - ![Cloudflare](https://img.shields.io/badge/Cloudflare-F38020?style=for-the-badge&logo=Cloudflare&logoColor=white)
+
+- **Containerization:**
+  - ![Docker](https://img.shields.io/badge/Docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)
+
+## How to Start the Project
 
 1. **Clone the Repository**
    ```bash
@@ -14,12 +39,12 @@ This website is designed for managing population administration processes in Nga
    ```
 
 2. **Navigate to the Project Folder**
-   Open your command line and go to the project folder.
+   Open your command line and go to the project directory.
 
 3. **Create and Configure the `.env` File**
-   Copy `.env.example` to create a new `.env` file and configure it with your local database settings.
+   Copy `.env.example` to create a new `.env` file and update it with your local database settings.
 
-4. **Install Dependencies**
+4. **Install PHP Dependencies**
    ```bash
    composer install
    ```
@@ -52,41 +77,38 @@ This website is designed for managing population administration processes in Nga
    npm run build
    ```
 
-10. **Generate the Application Key** (if required)
+10. **Generate the Application Key** (if needed)
     ```bash
     php artisan key:generate
     ```
 
 11. **Start Working**
-    You're all set up and ready to work!
+    You're all set up and ready to begin!
 
-## Usage
+## Main Features
 
-The system is designed for three types of users:
+**Admin:**
+- Manage User Roles and Permissions
+- Monitor Data Input
+- Dashboard Reporting
+- Data Management (Resident, Family Card, Housing)
+- Health Data Management (Pregnant Women)
+- Data Validation and Reporting
 
-1. **Admin**: Manages user roles and permissions.
-2. **User**: Used by village officials to monitor all data input by dasawisma. Users can only view the dashboard and cannot input data.
-3. **Dasawisma**: Used by dasawisma members to input data specific to their assigned areas.
-
-## Features
-
-- CRUD Operations
-- Dashboard
-- User Authentication
-- And more...
-
-## Contributing
-
-Currently, contributions are not open for this project.
+**Dasawisma:**
+- Input Data for Assigned Areas
+- Access Dashboard for Data Entry
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](LICENSE).
 
-## Contact Information
+## Contact
 
-For inquiries or issues, please contact: [contact@fauzanghaza.com](mailto:contact@fauzanghaza.com)
+For more information, you can contact:
+
+- Fauzan Ghaza Madani: [contact@fauzanghaza.com](mailto:contact@fauzanghaza.com)
 
 ---
 
-Feel free to adjust any details or sections as needed!
+Feel free to adjust or add more details as needed!
