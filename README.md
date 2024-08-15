@@ -1,7 +1,3 @@
-Here’s a polished and translated README.md for your project:
-
----
-
 # Administrasi Kependudukan Desa Ngaringan
 
 ## Description
