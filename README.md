@@ -5,14 +5,14 @@
 
 ## 📑 Table of Contents
 - [Meet Our Team](#meet-our-team)
-- [Project Description](#project-description)
-- [Main Features](#main-features)
-- [Tech Stack](#tech-stack)
-- [How to Start the Project](#how-to-start-the-project)
-- [Default Admin User](#default-admin-user)
-- [Accessing phpMyAdmin](#accessing-phpmyadmin)
-- [License](#license)
-- [Contact](#contact)
+- [Project Description](#-project-description)
+- [Main Features](#-main-features)
+- [Tech Stack](#-tech-stack)
+- [How to Start the Project](#-how-to-start-the-project)
+- [Default Admin User](#-default-admin-user)
+- [Accessing phpMyAdmin](#-accessing-phpmyadmin)
+- [License](#-license)
+- [Contact](#-contact)
 
 ## Meet Our Team
 
