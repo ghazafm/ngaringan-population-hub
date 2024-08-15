@@ -6,6 +6,9 @@ while ! mysqladmin ping -h"mysql" --silent; do
   sleep 1
 done
 
+echo "MySQL is ready."
+
+# Run migrations
 echo "Running migrations..."
 php artisan migrate --force
 
@@ -21,7 +24,7 @@ echo "Creating admin user..."
 php artisan tinker --execute="
 use App\Models\User;
 User::updateOrCreate(
-    ['email' => 'admin@example.com'],
+    ['email' => 'admin@ngaringan.com'],
     [
         'name' => 'Admin',
         'usertype' => 'admin',
@@ -30,11 +33,35 @@ User::updateOrCreate(
         'dusun' => 'gondoroso',
         'no_telp' => '1234567890',
         'email' => 'admin@ngaringan.com',
-        'password' => bcrypt('adminpassword')
+        'password' => bcrypt('adminuser')
     ]
 );"
 
 echo "Initialization complete."
 
-# Execute the main container command
-exec "$@"
+#!/usr/bin/env bash
+
+if [ "$SUPERVISOR_PHP_USER" != "root" ] && [ "$SUPERVISOR_PHP_USER" != "sail" ]; then
+    echo "You should set SUPERVISOR_PHP_USER to either 'sail' or 'root'."
+    exit 1
+fi
+
+if [ ! -z "$WWWUSER" ]; then
+    usermod -u $WWWUSER sail
+fi
+
+if [ ! -d /.composer ]; then
+    mkdir /.composer
+fi
+
+chmod -R ugo+rw /.composer
+
+if [ $# -gt 0 ]; then
+    if [ "$SUPERVISOR_PHP_USER" = "root" ]; then
+        exec "$@"
+    else
+        exec gosu $WWWUSER "$@"
+    fi
+else
+    exec /usr/bin/supervisord -c /etc/supervisor/conf.d/supervisord.conf
+fi
