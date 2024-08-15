@@ -76,9 +76,24 @@ Administrasi Kependudukan Desa Ngaringan is a comprehensive web application desi
    ```
    (Use the second command if the previous one doesn't apply changes to your database.)
 
-6. **Seed the Database with Dummy Data**
+6. **Seed the Database with Dummy Data** (Optional)
+   To seed the database using Laravel Sail, you can modify the `docker-compose.yml` to include the `DB_SEED` environment variable in the `laravel.test` service.
+
+   Example:
+   ```yaml
+   environment:
+       ...
+       DB_SEED: true
+   ```
+
+   Then, start Sail with:
    ```bash
-   php artisan db:seed
+   ./vendor/bin/sail up
+   ```
+
+   If `DB_SEED` is set to true, the database seeding will run automatically. If not, you can manually seed the database by running:
+   ```bash
+   ./vendor/bin/sail artisan db:seed
    ```
 
 7. **Install JavaScript Dependencies**
@@ -92,9 +107,9 @@ Administrasi Kependudukan Desa Ngaringan is a comprehensive web application desi
    ```
 
 9. **Generate the Application Key** (if needed)
-    ```bash
-    php artisan key:generate
-    ```
+   ```bash
+   php artisan key:generate
+   ```
 
 10. **Start Laravel Sail**
     If you are using Laravel Sail for local development, start Sail with:
