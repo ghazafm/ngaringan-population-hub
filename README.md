@@ -2,12 +2,28 @@
 
 ## Meet Our Team
 
-1. **Fauzan Ghaza Madani** - Backend Developer, Product Manager
-2. **[Your Team Members]** - [Their Roles]
+1. **Fauzan Ghaza Madani** - Product Manager
+2. **Meisha Putradewan** - Backend Developer
+3. **Mochammad Rasya Dimas Chamda** - Backend Developer
+4. **Hernando Atha** - Frontend Developer
 
 ## Project Description
 
-Administrasi Kependudukan Desa Ngaringan is a web application designed to streamline the administration of population data in Ngaringan Village, Blitar Regency. This platform centralizes the management of resident data, family cards, housing information, and health data for pregnant women. It is intended for use by village administrators (supervisors) and dasawisma (data inputters).
+Administrasi Kependudukan Desa Ngaringan is a comprehensive web application designed to facilitate the management of population data in Ngaringan Village, Blitar Regency. This platform centralizes the administration of various types of data including resident records, family cards, housing information, and health data for pregnant women. It serves as a vital tool for village administrators (supervisors) and dasawisma (data inputters), providing a streamlined approach to data entry, management, and oversight.
+
+## Main Features
+
+**Admin:**
+- User Role and Permission Management
+- Data Oversight and Validation
+- Dashboard Reporting
+- Comprehensive Data Management (Residents, Family Cards, Housing)
+- Health Data Administration (Pregnant Women)
+- Data Analysis and Reporting
+
+**Dasawisma:**
+- Area-specific Data Input
+- Access to Data Entry Dashboard
 
 ## Tech Stack
 
@@ -20,6 +36,7 @@ Administrasi Kependudukan Desa Ngaringan is a web application designed to stream
 - **Backend:**
   - ![Laravel](https://img.shields.io/badge/Laravel-FB5034?style=for-the-badge&logo=laravel&logoColor=white)
   - ![Filament](https://img.shields.io/badge/Filament-FF3C7C?style=for-the-badge&logo=laravel&logoColor=white)
+  - ![Sail](https://img.shields.io/badge/Laravel%20Sail-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
 
 - **Database:**
   - ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
@@ -35,7 +52,7 @@ Administrasi Kependudukan Desa Ngaringan is a web application designed to stream
 
 1. **Clone the Repository**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/ghazafm/administrasi-dasawisma-ngaringan.git
    ```
 
 2. **Navigate to the Project Folder**
@@ -49,10 +66,7 @@ Administrasi Kependudukan Desa Ngaringan is a web application designed to stream
    composer install
    ```
 
-5. **Generate the `vendor` Folder**
-   Wait until the `vendor` folder is created.
-
-6. **Run Migrations**
+5. **Run Migrations**
    ```bash
    php artisan migrate
    ```
@@ -62,42 +76,34 @@ Administrasi Kependudukan Desa Ngaringan is a web application designed to stream
    ```
    (Use the second command if the previous one doesn't apply changes to your database.)
 
-7. **Seed the Database with Dummy Data**
+6. **Seed the Database with Dummy Data**
    ```bash
    php artisan db:seed
    ```
 
-8. **Install JavaScript Dependencies**
+7. **Install JavaScript Dependencies**
    ```bash
    npm install
    ```
 
-9. **Build Assets**
+8. **Build Assets**
    ```bash
    npm run build
    ```
 
-10. **Generate the Application Key** (if needed)
+9. **Generate the Application Key** (if needed)
     ```bash
     php artisan key:generate
     ```
 
+10. **Start Laravel Sail**
+    If you are using Laravel Sail for local development, start Sail with:
+    ```bash
+    ./vendor/bin/sail up
+    ```
+
 11. **Start Working**
-    You're all set up and ready to begin!
-
-## Main Features
-
-**Admin:**
-- Manage User Roles and Permissions
-- Monitor Data Input
-- Dashboard Reporting
-- Data Management (Resident, Family Card, Housing)
-- Health Data Management (Pregnant Women)
-- Data Validation and Reporting
-
-**Dasawisma:**
-- Input Data for Assigned Areas
-- Access Dashboard for Data Entry
+    You’re now set up and ready to begin working on the project!
 
 ## License
 
@@ -108,7 +114,3 @@ This project is licensed under the [MIT License](LICENSE).
 For more information, you can contact:
 
 - Fauzan Ghaza Madani: [contact@fauzanghaza.com](mailto:contact@fauzanghaza.com)
-
----
-
-Feel free to adjust or add more details as needed!
